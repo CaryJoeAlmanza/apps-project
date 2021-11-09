@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1012.0" prefWidth="1355.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.BoardController">
+   <children>
+      <ImageView fitHeight="1029.0" fitWidth="1356.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/craps%20board.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="balanceLabel" alignment="CENTER" layoutX="14.0" layoutY="894.0" prefHeight="64.0" prefWidth="193.0" text="\$" textAlignment="CENTER" textFill="#0db510">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+      <Button fx:id="rollButton" alignment="CENTER" layoutX="1156.0" layoutY="851.0" mnemonicParsing="false" onAction="#rollDice" prefHeight="150.0" prefWidth="193.0" text="Roll!" />
+      <Label alignment="CENTER" layoutX="955.0" layoutY="862.0" prefHeight="43.0" prefWidth="164.0" text="Total Roll">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Label fx:id="rollLabel" alignment="CENTER" layoutX="1002.0" layoutY="899.0" prefHeight="70.0" prefWidth="70.0" text="0">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+      <Label fx:id="winLoseLabel" alignment="CENTER" layoutX="570.0" layoutY="14.0" prefHeight="21.0" prefWidth="246.0" text="You won/lost: $" textFill="#faff00">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <ImageView fx:id="chip50" fitHeight="56.0" fitWidth="56.0" layoutX="488.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/chip50.png" />
+         </image></ImageView>
+      <ImageView fx:id="chip1" fitHeight="56.0" fitWidth="70.0" layoutX="219.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/chip1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="chip5" fitHeight="56.0" fitWidth="56.0" layoutX="285.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/chip5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="chip10" fitHeight="56.0" fitWidth="56.0" layoutX="348.0" layoutY="898.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/chip10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="chip25" fitHeight="56.0" fitWidth="56.0" layoutX="416.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/chip25.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="wagerLabel" alignment="CENTER" layoutX="644.0" layoutY="893.0" prefHeight="64.0" prefWidth="89.0" text="\$" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="chip100" fitHeight="56.0" fitWidth="70.0" layoutX="555.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/chip100.png" />
+         </image>
+      </ImageView>
+      <GridPane fx:id="placeGridPane" layoutX="362.0" layoutY="58.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="175.0" prefWidth="924.0">
+        <columnConstraints>
+          <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
+            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
+            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
+          <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
+            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
+            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" percentHeight="63.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" />
+            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+            <ImageView fx:id="fourComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <ImageView fx:id="tenPlaceLabel" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <ImageView fx:id="ninePlaceLabel" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <ImageView fx:id="sixPlaceLabel" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <ImageView fx:id="fivePlaceImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <ImageView fx:id="eightPlaceLabel" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <ImageView fx:id="tenComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <ImageView fx:id="nineComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <ImageView fx:id="sixComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <ImageView fx:id="fiveComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Label text="Label" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <Label text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <Label text="Label" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <Label text="Label" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <Label fx:id="fivePlaceLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label fx:id="fourPlaceLabel" text="Label" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label text="Label" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <Label fx:id="tenPlaceLabel" text="Label" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label fx:id="ninePlaceLabel" text="Label" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label fx:id="eightPlaceLabel" text="Label" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label fx:id="sixPlaceLabel" text="Label" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label fx:id="fourComeLabel" text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Label fx:id="tenComeLabel" text="Label" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Label fx:id="nineComeLabel" text="Label" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Label fx:id="eightComeLabel" text="Label" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Label fx:id="sixComeLabel" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Label fx:id="fiveComeLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <ImageView fx:id="fourPlaceImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <ImageView fx:id="eightComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+         </children>
+      </GridPane>
+      <Pane fx:id="passLinePane1" layoutX="87.0" layoutY="176.0" prefHeight="596.0" prefWidth="47.0" />
+      <Pane fx:id="dontPassLinePane2" layoutX="160.0" layoutY="107.0" prefHeight="596.0" prefWidth="47.0" />
+      <Pane fx:id="passLinePane2" layoutX="124.0" layoutY="722.0" prefHeight="50.0" prefWidth="851.0">
+         <children>
+            <ImageView fx:id="passLineImage" fitHeight="36.0" fitWidth="39.0" layoutX="798.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="passLineLabel" layoutX="800.0" layoutY="15.0" text="Label" />
+         </children></Pane>
+      <Pane fx:id="dontPassLinePane2" layoutX="191.0" layoutY="653.0" prefHeight="50.0" prefWidth="790.0">
+         <children>
+            <ImageView fx:id="dontPassLineImage" fitHeight="36.0" fitWidth="39.0" layoutX="42.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="dontPassLineLabel" layoutX="44.0" layoutY="15.0" text="Label" />
+         </children></Pane>
+      <Pane fx:id="fieldPane" layoutX="207.0" layoutY="443.0" prefHeight="212.0" prefWidth="769.0">
+         <children>
+            <Label fx:id="fieldLabel" layoutX="544.0" layoutY="159.0" text="Label" />
+            <ImageView fx:id="fieldImage" fitHeight="36.0" fitWidth="39.0" layoutX="542.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+         </children></Pane>
+      <Pane fx:id="comePane" layoutX="207.0" layoutY="233.0" prefHeight="212.0" prefWidth="769.0">
+         <children>
+            <ImageView fx:id="comeImage" fitHeight="36.0" fitWidth="39.0" layoutX="579.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="comeLabel" layoutX="581.0" layoutY="161.0" text="Label" />
+         </children></Pane>
+      <Pane fx:id="sevenPane" layoutX="995.0" layoutY="259.0" prefHeight="89.0" prefWidth="344.0">
+         <children>
+            <ImageView fx:id="sevenImage" fitHeight="35.0" fitWidth="39.0" layoutX="153.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="sevenLabel" layoutX="155.0" layoutY="34.0" text="Label" />
+         </children></Pane>
+      <Pane fx:id="anyCrapsPane" layoutX="995.0" layoutY="716.0" prefHeight="89.0" prefWidth="344.0">
+         <children>
+            <ImageView fx:id="anyCrapsImage" fitHeight="35.0" fitWidth="39.0" layoutX="153.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="hardCrapsLabel" layoutX="155.0" layoutY="35.0" text="Label" />
+         </children></Pane>
+      <GridPane fx:id="hardPane" layoutX="995.0" layoutY="348.0" prefHeight="362.0" prefWidth="344.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" percentHeight="26.5" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" percentHeight="26.5" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" percentHeight="26.5" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fx:id="hardFourImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hardTwelveImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ImageView fx:id="hardTwoImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3" />
+            <ImageView fx:id="hardEightImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ImageView fx:id="hardElevenImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ImageView fx:id="hardThreeImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
+            <ImageView fx:id="hardSixImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+            <ImageView fx:id="hardTenImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+            <Label fx:id="hardFourLabel" text="Label" />
+            <Label fx:id="hardTwelveLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="hardTwoLabel" text="Label" GridPane.rowIndex="3" />
+            <Label fx:id="hardElevenLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="hardThreeLabel" text="Label" GridPane.rowIndex="2" />
+            <Label fx:id="hardEightLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="hardSixLabel" text="Label" GridPane.rowIndex="1" />
+            <Label fx:id="hardTenLabel" text="Label" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <Pane layoutX="207.0" layoutY="58.0" prefHeight="175.0" prefWidth="150.0">
+         <children>
+            <ImageView fx:id="onOffButton" fitHeight="35.0" fitWidth="39.0" layoutX="14.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dontComeImage" fitHeight="35.0" fitWidth="39.0" layoutX="86.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="dontComeLabel" layoutX="88.0" layoutY="102.0" text="Label" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
