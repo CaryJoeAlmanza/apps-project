@@ -107,10 +107,16 @@ public class BoardController {
     private ImageView hardElevenImage;
 
     @FXML
+    private ImageView sixPlaceImage;
+
+    @FXML
     private ImageView fiveComeImage;
 
     @FXML
     private ImageView chip50;
+
+    @FXML
+    private ImageView ninePlaceImage;
 
     @FXML
     private Pane passLinePane2;
@@ -132,6 +138,9 @@ public class BoardController {
 
     @FXML
     private Label sevenLabel;
+
+    @FXML
+    private ImageView eightPlaceImage;
 
     @FXML
     private ImageView chip5;
@@ -191,6 +200,9 @@ public class BoardController {
     private Label winLoseLabel;
 
     @FXML
+    private ImageView tenPlaceImage;
+
+    @FXML
     private Label hardSixLabel;
 
     @FXML
@@ -222,7 +234,6 @@ public class BoardController {
 
     @FXML
     private Label fourComeLabel;
-
 
     @FXML
     void rollDice(ActionEvent event) {
