@@ -14,7 +14,6 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class BoardController {
@@ -29,43 +28,34 @@ public class BoardController {
     private ImageView comeImage;
 
     @FXML
-    private Label comeLabel;
-
-    @FXML
     private ImageView hardSixImage;
-
-    @FXML
-    private Label hardEightLabel;
 
     @FXML
     private Label nineComeLabel;
 
     @FXML
+    private Pane hardPaneSix;
+
+    @FXML
     private ImageView hardEightImage;
-
-    @FXML
-    private ImageView hardTwelveImage;
-
-    @FXML
-    private ImageView fivePlaceImage;
 
     @FXML
     private Pane comePane;
 
     @FXML
-    private Label dontPassLineLabel;
+    private ImageView fivePlaceImage;
 
     @FXML
-    private Label rollLabel;
+    private Pane dontComePaneFour;
 
     @FXML
-    private GridPane hardPane;
+    private ImageView fiveComePlaceImage;
+
+    @FXML
+    private ImageView nineComePlaceImage;
 
     @FXML
     private Label hardTwelveLabel;
-
-    @FXML
-    private Pane anyCrapsPane;
 
     @FXML
     private ImageView dontPassLineImage;
@@ -74,76 +64,16 @@ public class BoardController {
     private Label tenComeLabel;
 
     @FXML
-    private ImageView fourComeImage;
-
-    @FXML
-    private ImageView fieldImage;
-
-    @FXML
-    private Label hardThreeLabel;
-
-    @FXML
-    private ImageView nineComeImage;
-
-    @FXML
-    private ImageView fourPlaceImage;
-
-    @FXML
-    private ImageView hardTenImage;
-
-    @FXML
-    private Label wagerLabel;
-
-    @FXML
-    private ImageView chip10;
-
-    @FXML
-    private Label eightComeLabel;
-
-    @FXML
     private ImageView passLineImage;
 
     @FXML
-    private Label dontComeLabel;
+    private Pane placePaneFive;
 
     @FXML
-    private ImageView hardTwoImage;
-
-    @FXML
-    private Label tenPlaceLabel;
-
-    @FXML
-    private ImageView hardElevenImage;
-
-    @FXML
-    private ImageView sixPlaceImage;
-
-    @FXML
-    private ImageView fiveComeImage;
+    private Pane placePaneNine;
 
     @FXML
     private ImageView chip50;
-
-    @FXML
-    private ImageView ninePlaceImage;
-
-    @FXML
-    private Pane passLinePane2;
-
-    @FXML
-    private Pane passLinePane1;
-
-    @FXML
-    private ImageView dontComeImage;
-
-    @FXML
-    private ImageView sevenImage;
-
-    @FXML
-    private ImageView chip1;
-
-    @FXML
-    private Button rollButton;
 
     @FXML
     private Label sevenLabel;
@@ -152,10 +82,10 @@ public class BoardController {
     private ImageView eightPlaceImage;
 
     @FXML
-    private ImageView chip5;
+    private Label hardFourLabel;
 
     @FXML
-    private Label hardFourLabel;
+    private ImageView sixComePlaceImage;
 
     @FXML
     private ImageView hardFourImage;
@@ -170,52 +100,37 @@ public class BoardController {
     private ImageView chip25;
 
     @FXML
-    private GridPane placeGridPane;
+    private Label fieldLabel;
 
     @FXML
-    private Label fieldLabel;
+    private Pane hardPaneEight;
+
+    @FXML
+    private Pane placePaneSix;
 
     @FXML
     private ImageView chip100;
 
     @FXML
-    private ImageView sixComeImage;
-
-    @FXML
-    private Label sixComeLabel;
+    private Pane dontComePaneEight;
 
     @FXML
     private Label sixPlaceLabel;
 
     @FXML
+    private Pane dontComePaneNine;
+
+    @FXML
     private Label hardCrapsLabel;
-
-    @FXML
-    private Label hardTwoLabel;
-
-    @FXML
-    private ImageView eightComeImage;
-
-    @FXML
-    private Label passLineLabel;
 
     @FXML
     private Label fivePlaceLabel;
 
     @FXML
-    private Pane fieldPane;
+    private Pane dontComePaneFive;
 
     @FXML
     private Label winLoseLabel;
-
-    @FXML
-    private ImageView tenPlaceImage;
-
-    @FXML
-    private Label hardSixLabel;
-
-    @FXML
-    private Label fourPlaceLabel;
 
     @FXML
     private Label balanceLabel;
@@ -224,13 +139,196 @@ public class BoardController {
     private ImageView hardThreeImage;
 
     @FXML
-    private Label hardTenLabel;
+    private ImageView tenComePlaceImage;
 
     @FXML
     private ImageView tenComeImage;
 
     @FXML
+    private Label hardElevenLabel;
+
+    @FXML
+    private Label fourComeLabel;
+
+    @FXML
+    private Pane nineComePane;
+
+    @FXML
+    private Label comeLabel;
+
+    @FXML
+    private Pane placePaneFour;
+
+    @FXML
+    private Label hardEightLabel;
+
+    @FXML
+    private ImageView hardTwelveImage;
+
+    @FXML
+    private Label dontPassLineLabel;
+
+    @FXML
+    private Label rollLabel;
+
+    @FXML
+    private Pane hardPaneEleven;
+
+    @FXML
+    private Pane anyCrapsPane;
+
+    @FXML
+    private Pane dontComePaneSix;
+
+    @FXML
+    private Pane fourComePane;
+
+    @FXML
+    private ImageView fourComeImage;
+
+    @FXML
+    private ImageView fieldImage;
+
+    @FXML
+    private Label hardThreeLabel;
+
+    @FXML
+    private ImageView eightComePlaceImage;
+
+    @FXML
+    private ImageView fourPlaceImage;
+
+    @FXML
+    private ImageView nineComeImage;
+
+    @FXML
+    private ImageView hardTenImage;
+
+    @FXML
+    private Label wagerLabel;
+
+    @FXML
+    private ImageView chip10;
+
+    @FXML
+    private Label eightComeLabel;
+
+    @FXML
+    private Pane tenComePane;
+
+    @FXML
+    private Label dontComeLabel;
+
+    @FXML
+    private Pane hardPaneThree;
+
+    @FXML
+    private ImageView hardTwoImage;
+
+    @FXML
+    private Label tenPlaceLabel;
+
+    @FXML
+    private Pane fiveComePane;
+
+    @FXML
+    private Pane hardPaneTwo;
+
+    @FXML
+    private ImageView hardElevenImage;
+
+    @FXML
+    private ImageView sixPlaceImage;
+
+    @FXML
+    private ImageView fiveComeImage;
+
+    @FXML
+    private ImageView ninePlaceImage;
+
+    @FXML
+    private Pane passLinePane2;
+
+    @FXML
+    private Pane passLinePane1;
+
+    @FXML
+    private Pane placePaneEight;
+
+    @FXML
+    private ImageView dontComeImage;
+
+    @FXML
+    private ImageView sevenImage;
+
+    @FXML
+    private ImageView chip1;
+
+    @FXML
+    private Button rollButton;
+
+    @FXML
+    private ImageView chip5;
+
+    @FXML
+    private Pane hardPaneTen;
+
+    @FXML
+    private Pane hardPaneTwelve;
+
+    @FXML
+    private Label fourComePlaceLabel;
+
+    @FXML
+    private Pane eightComePane;
+
+    @FXML
+    private ImageView sixComeImage;
+
+    @FXML
+    private Label sixComeLabel;
+
+    @FXML
+    private ImageView fourComePlaceImage;
+
+    @FXML
+    private Label hardTwoLabel;
+
+    @FXML
+    private Label passLineLabel;
+
+    @FXML
+    private ImageView eightComeImage;
+
+    @FXML
+    private Pane fieldPane;
+
+    @FXML
+    private Pane dontComePaneTen;
+    
+    @FXML
+    private Pane placePaneTen;
+
+    @FXML
+    private ImageView tenPlaceImage;
+
+    @FXML
+    private Pane sixComePane;
+
+    @FXML
+    private Label hardSixLabel;
+
+    @FXML
+    private Label fourPlaceLabel;
+
+    @FXML
+    private Label hardTenLabel;
+
+    @FXML
     private Pane dontPassLinePane2;
+    
+    @FXML
+    private Pane dontPassLinePane1;
 
     @FXML
     private ImageView onOffButton;
@@ -239,55 +337,144 @@ public class BoardController {
     private Label eightPlaceLabel;
 
     @FXML
-    private Label hardElevenLabel;
+    private ImageView chip$;
 
     @FXML
-    private Label fourComeLabel;
-    
-    @FXML
-    private ImageView chip$;
+    private Pane hardPaneFour;
 
     @FXML
     void rollDice(ActionEvent event) {
 
     }
     
-    Chip dollar1 = new Chip("1", 1, chip1);
-    Chip dollar5 = new Chip("5", 5, chip5);
-    Chip dollar10 = new Chip("10", 10, chip10);
-    Chip dollar25 = new Chip("25", 25, chip25);
-    Chip dollar50 = new Chip("50", 50, chip50);
-    Chip dollar100 = new Chip("100", 100, chip100);
-    Chip totalChip = new Chip("$", 0, chip$);
+//    Chip dollar1 = new Chip("1", 1, chip1);
+//    Chip dollar5 = new Chip("5", 5, chip5);
+//    Chip dollar10 = new Chip("10", 10, chip10);
+//    Chip dollar25 = new Chip("25", 25, chip25);
+//    Chip dollar50 = new Chip("50", 50, chip50);
+//    Chip dollar100 = new Chip("100", 100, chip100);
+    Chip totalWagerPassLine = new Chip("$", 0, chip$);
+    Chip totalWagerDontPassLine = new Chip("$", 0, chip$);
+    Chip totalWagerField = new Chip("$", 0, chip$);
+    Chip totalWagerCome = new Chip("$", 0, chip$);
+    Chip totalWagerDontCome = new Chip("$", 0, chip$);
+    Chip totalWagerFourPlace = new Chip("$", 0, chip$);
+    Chip totalWagerFourCome = new Chip("$", 0, chip$);
+    Chip totalWagerFivePlace = new Chip("$", 0, chip$);
+    Chip totalWagerFiveCome = new Chip("$", 0, chip$);
+    Chip totalWagerSixPlace = new Chip("$", 0, chip$);
+    Chip totalWagerSixCome = new Chip("$", 0, chip$);
+    Chip totalWagerEightPlace = new Chip("$", 0, chip$);
+    Chip totalWagerEightCome = new Chip("$", 0, chip$);
+    Chip totalWagerNinePlace = new Chip("$", 0, chip$);
+    Chip totalWagerNineCome = new Chip("$", 0, chip$);
+    Chip totalWagerTenPlace= new Chip("$", 0, chip$);
+    Chip totalWagerTenCome = new Chip("$", 0, chip$);
+    Chip totalWagerSeven = new Chip("$", 0, chip$);
+    Chip totalWagerAnyCraps = new Chip("$", 0, chip$);
+    Chip totalWagerHardTwo = new Chip("$", 0, chip$);
+    Chip totalWagerHardTwelve = new Chip("$", 0, chip$);
+    Chip totalWagerHardFour = new Chip("$", 0, chip$);
+    Chip totalWagerHardSix = new Chip("$", 0, chip$);
+    Chip totalWagerHardEight = new Chip("$", 0, chip$);
+    Chip totalWagerHardTen = new Chip("$", 0, chip$);
+    Chip totalWagerHardThree = new Chip("$", 0, chip$);
+    Chip totalWagerHardEleven = new Chip("$", 0, chip$);
+    Chip totalBets = new Chip("$", 0, chip$);
     Chip sourceChip = new Chip();
+    /* need to add dont come number bets */
     
     public void initialize() {
-    	
+//    	dollar1.setChipImg(chip1);
+//    	dollar5.setChipImg(chip5);
+//    	dollar10.setChipImg(chip10);
+//    	dollar25.setChipImg(chip25);
+//    	dollar50.setChipImg(chip50);
+//    	dollar100.setChipImg(chip100);
+    	totalWagerPassLine.setChipImg(chip$);
+    	totalWagerDontPassLine.setChipImg(chip$);
+        totalWagerField.setChipImg(chip$);
+        totalWagerCome.setChipImg(chip$);
+        totalWagerDontCome.setChipImg(chip$);
+        totalWagerFourPlace.setChipImg(chip$);
+        totalWagerFourCome.setChipImg(chip$);
+        totalWagerFivePlace.setChipImg(chip$);
+        totalWagerFiveCome.setChipImg(chip$);
+        totalWagerSixPlace.setChipImg(chip$);
+        totalWagerSixCome.setChipImg(chip$);
+        totalWagerEightPlace.setChipImg(chip$);
+        totalWagerEightCome.setChipImg(chip$);
+        totalWagerNinePlace.setChipImg(chip$);
+        totalWagerNineCome.setChipImg(chip$);
+        totalWagerTenPlace.setChipImg(chip$);
+        totalWagerTenCome.setChipImg(chip$);
+        totalWagerSeven.setChipImg(chip$);
+        totalWagerAnyCraps.setChipImg(chip$);
+        totalWagerHardTwo.setChipImg(chip$);
+        totalWagerHardTwelve.setChipImg(chip$);
+        totalWagerHardFour.setChipImg(chip$);
+        totalWagerHardSix.setChipImg(chip$);
+        totalWagerHardEight.setChipImg(chip$);
+        totalWagerHardTen.setChipImg(chip$);
+        totalWagerHardThree.setChipImg(chip$);
+        totalWagerHardEleven.setChipImg(chip$);
+        totalBets.setChipImg(chip$);
     }
     
     @FXML
     void handleDragDetected(MouseEvent event) throws IOException {
     	Object source = event.getSource();
-    	dollar1.setChipImg(chip1);
-    	dollar5.setChipImg(chip5);
-    	dollar10.setChipImg(chip10);
-    	dollar25.setChipImg(chip25);
-    	dollar50.setChipImg(chip50);
-    	dollar100.setChipImg(chip100);
-    	totalChip.setChipImg(chip$);
     	if( source == chip1 ) {
-    		//Chip sourceImg = new Chip("1", 1, chip1);
     		sourceChip.setChipID("1");
-    		totalChip.setChipValue(dollar1.getChipValue() + totalChip.getChipValue());
-//    		System.out.println(dollar1.getChipValue());
-//    		System.out.println(totalChip.getChipValue());
-//    		System.out.println(totalChip.getChipImg());
+    		sourceChip.setChipValue(1);
     		Dragboard db = chip1.startDragAndDrop(TransferMode.ANY);
-        	
         	ClipboardContent cb = new ClipboardContent();
-        	
-        	cb.putImage(totalChip.getChipImg().getImage());
-        	
+        	cb.putImage(totalBets.getChipImg().getImage());
+    	    db.setContent(cb);
+    	    event.consume();
+    	}
+    	if( source == chip5 ) {
+    		sourceChip.setChipID("5");
+    		sourceChip.setChipValue(5);
+    		Dragboard db = chip5.startDragAndDrop(TransferMode.ANY);
+        	ClipboardContent cb = new ClipboardContent();
+        	cb.putImage(totalBets.getChipImg().getImage());
+    	    db.setContent(cb);
+    	    event.consume();
+    	}
+    	if( source == chip10 ) {
+    		sourceChip.setChipID("10");
+    		sourceChip.setChipValue(10);
+    		Dragboard db = chip10.startDragAndDrop(TransferMode.ANY);
+        	ClipboardContent cb = new ClipboardContent();
+        	cb.putImage(totalBets.getChipImg().getImage());
+    	    db.setContent(cb);
+    	    event.consume();
+    	}
+    	if( source == chip25 ) {
+    		sourceChip.setChipID("25");
+    		sourceChip.setChipValue(25);
+    		Dragboard db = chip25.startDragAndDrop(TransferMode.ANY);
+        	ClipboardContent cb = new ClipboardContent();
+        	cb.putImage(totalBets.getChipImg().getImage());
+    	    db.setContent(cb);
+    	    event.consume();
+    	}
+    	if( source == chip50 ) {
+    		sourceChip.setChipID("50");
+    		sourceChip.setChipValue(50);
+    		Dragboard db = chip50.startDragAndDrop(TransferMode.ANY);
+        	ClipboardContent cb = new ClipboardContent();
+        	cb.putImage(totalBets.getChipImg().getImage());
+    	    db.setContent(cb);
+    	    event.consume();
+    	}
+    	if( source == chip100 ) {
+    		sourceChip.setChipID("100");
+    		sourceChip.setChipValue(100);
+    		Dragboard db = chip100.startDragAndDrop(TransferMode.ANY);
+        	ClipboardContent cb = new ClipboardContent();
+        	cb.putImage(totalBets.getChipImg().getImage());
     	    db.setContent(cb);
     	    event.consume();
     	}
@@ -302,22 +489,63 @@ public class BoardController {
 
     @FXML
     void handleDrop(DragEvent event) {
-    	dollar1.setChipImg(chip1);
-    	dollar5.setChipImg(chip5);
-    	dollar10.setChipImg(chip10);
-    	dollar25.setChipImg(chip25);
-    	dollar50.setChipImg(chip50);
-    	dollar100.setChipImg(chip100);
-    	totalChip.setChipImg(chip$);
     	Image img = event.getDragboard().getImage();
-    	//sourceChip.getChipID();
     	Object source = event.getSource();
     	if(source == passLinePane1 || source == passLinePane2) {
-    		//passLineImage.setImage(img);
-    		if( sourceChip.getChipID().equals(dollar1.getChipID())) {
-    			passLineImage.setImage(img);
-    			passLineLabel.setText("" + totalChip.getChipValue());
-    		}
+    		passLineImage.setImage(img);
+    		totalWagerPassLine.setChipValue(totalWagerPassLine.getChipValue() + sourceChip.getChipValue());
+    		passLineLabel.setText("" + totalWagerPassLine.getChipValue());
+    	}
+    	if( source == dontPassLinePane1 || source == dontPassLinePane2 ) {
+    		dontPassLineImage.setImage(img);
+    		totalWagerDontPassLine.setChipValue(totalWagerDontPassLine.getChipValue() + sourceChip.getChipValue());
+    		dontPassLineLabel.setText("" + totalWagerDontPassLine.getChipValue());
+    	}
+    	if( source == fieldPane ) {
+    		fieldImage.setImage(img);
+    		totalWagerField.setChipValue(totalWagerField.getChipValue() + sourceChip.getChipValue());
+    		fieldLabel.setText("" + totalWagerField.getChipValue());
+    	}
+    	if( source == comePane ) {
+    		comeImage.setImage(img);
+    		totalWagerCome.setChipValue(totalWagerCome.getChipValue() + sourceChip.getChipValue());
+    		comeLabel.setText("" + totalWagerCome.getChipValue());
+    	}
+
+    	if( source == placePaneFour ) {
+    		fourPlaceImage.setImage(img);
+    		totalWagerFourPlace.setChipValue(totalWagerFourPlace.getChipValue() + sourceChip.getChipValue());
+    		fourPlaceLabel.setText("" + totalWagerFourPlace.getChipValue());
+    	}
+    	if( source == placePaneFive ) {
+    		fivePlaceImage.setImage(img);
+    		totalWagerFivePlace.setChipValue(totalWagerFivePlace.getChipValue() + sourceChip.getChipValue());
+    		fivePlaceLabel.setText("" + totalWagerFivePlace.getChipValue());
+    	}
+    	if( source == placePaneSix ) {
+    		sixPlaceImage.setImage(img);
+    		totalWagerSixPlace.setChipValue(totalWagerSixPlace.getChipValue() + sourceChip.getChipValue());
+    		sixPlaceLabel.setText("" + totalWagerSixPlace.getChipValue());
+    	}
+    	if( source == placePaneEight ) {
+    		eightPlaceImage.setImage(img);
+    		totalWagerEightPlace.setChipValue(totalWagerEightPlace.getChipValue() + sourceChip.getChipValue());
+    		eightPlaceLabel.setText("" + totalWagerEightPlace.getChipValue());
+    	}
+    	if( source == placePaneNine ) {
+    		ninePlaceImage.setImage(img);
+    		totalWagerNinePlace.setChipValue(totalWagerNinePlace.getChipValue() + sourceChip.getChipValue());
+    		ninePlaceLabel.setText("" + totalWagerNinePlace.getChipValue());
+    	}
+    	if( source == placePaneTen ) {
+    		tenPlaceImage.setImage(img);
+    		totalWagerTenPlace.setChipValue(totalWagerTenPlace.getChipValue() + sourceChip.getChipValue());
+    		tenPlaceLabel.setText("" + totalWagerTenPlace.getChipValue());
+    	}
+    	if( source == placePaneTen ) {
+    		tenPlaceImage.setImage(img);
+    		totalWagerTenPlace.setChipValue(totalWagerTenPlace.getChipValue() + sourceChip.getChipValue());
+    		tenPlaceLabel.setText("" + totalWagerTenPlace.getChipValue());
     	}
     	
     }

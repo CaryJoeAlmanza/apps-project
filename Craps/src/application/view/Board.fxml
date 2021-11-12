@@ -31,95 +31,47 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <ImageView fx:id="chip50" fitHeight="56.0" fitWidth="56.0" layoutX="488.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/chip50.png" />
-         </image></ImageView>
-      <ImageView fx:id="chip1" fitHeight="56.0" fitWidth="70.0" layoutX="219.0" layoutY="899.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/chip1.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="chip5" fitHeight="56.0" fitWidth="56.0" layoutX="285.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/chip5.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="chip10" fitHeight="56.0" fitWidth="56.0" layoutX="348.0" layoutY="898.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/chip10.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="chip25" fitHeight="56.0" fitWidth="56.0" layoutX="416.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/chip25.png" />
-         </image>
-      </ImageView>
+      <HBox alignment="CENTER" layoutX="220.0" layoutY="876.0" prefHeight="100.0" prefWidth="419.0">
+         <children>
+            <ImageView fx:id="chip1" fitHeight="70.0" fitWidth="70.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/chip1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="chip5" fitHeight="70.0" fitWidth="70.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/chip5.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="chip10" fitHeight="70.0" fitWidth="70.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/chip10.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="chip25" fitHeight="70.0" fitWidth="70.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/chip25.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="chip50" fitHeight="70.0" fitWidth="70.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/chip50.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="chip100" fitHeight="70.0" fitWidth="70.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/chip100.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
       <Label fx:id="wagerLabel" alignment="CENTER" layoutX="644.0" layoutY="893.0" prefHeight="64.0" prefWidth="89.0" text="\$" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="chip100" fitHeight="56.0" fitWidth="70.0" layoutX="555.0" layoutY="899.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/chip100.png" />
-         </image>
-      </ImageView>
-      <GridPane fx:id="placeGridPane" layoutX="362.0" layoutY="58.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="175.0" prefWidth="924.0">
-        <columnConstraints>
-          <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
-            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
-            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
-          <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
-            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
-            <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="63.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
-            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" />
-            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-            <ImageView fx:id="fourComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <ImageView fx:id="tenPlaceImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <ImageView fx:id="ninePlaceImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <ImageView fx:id="sixPlaceImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <ImageView fx:id="fivePlaceImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <ImageView fx:id="eightPlaceImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <ImageView fx:id="tenComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <ImageView fx:id="nineComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <ImageView fx:id="sixComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <ImageView fx:id="fiveComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <Label text="Label" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-            <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-            <Label text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-            <Label text="Label" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-            <Label text="Label" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-            <Label fx:id="fivePlaceLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label fx:id="fourPlaceLabel" text="Label" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label text="Label" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-            <Label fx:id="tenPlaceLabel" text="25" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label fx:id="ninePlaceLabel" text="Label" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label fx:id="eightPlaceLabel" text="Label" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label fx:id="sixPlaceLabel" text="Label" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label fx:id="fourComeLabel" text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <Label fx:id="tenComeLabel" text="Label" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <Label fx:id="nineComeLabel" text="Label" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <Label fx:id="eightComeLabel" text="Label" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <Label fx:id="sixComeLabel" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <Label fx:id="fiveComeLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <ImageView fx:id="fourPlaceImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <ImageView fx:id="eightComeImage" fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-         </children>
-      </GridPane>
       <Pane fx:id="passLinePane1" layoutX="87.0" layoutY="176.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="596.0" prefWidth="47.0" />
-      <Pane fx:id="dontPassLinePane2" layoutX="160.0" layoutY="107.0" prefHeight="596.0" prefWidth="47.0" />
+      <Pane fx:id="dontPassLinePane1" layoutX="160.0" layoutY="107.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="596.0" prefWidth="47.0" />
       <Pane fx:id="passLinePane2" layoutX="124.0" layoutY="722.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="50.0" prefWidth="851.0">
          <children>
             <HBox alignment="CENTER" layoutX="654.0" layoutY="4.0" prefHeight="43.0" prefWidth="193.0" spacing="50.0">
@@ -133,66 +85,55 @@
                </children>
             </HBox>
          </children></Pane>
-      <Pane fx:id="dontPassLinePane2" layoutX="191.0" layoutY="653.0" prefHeight="50.0" prefWidth="790.0">
+      <Pane fx:id="dontPassLinePane2" layoutX="191.0" layoutY="653.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="50.0" prefWidth="790.0">
          <children>
-            <ImageView fx:id="dontPassLineImage" fitHeight="36.0" fitWidth="39.0" layoutX="42.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="dontPassLineLabel" layoutX="44.0" layoutY="15.0" text="Label" />
+            <ImageView fx:id="dontPassLineImage" fitHeight="44.0" fitWidth="48.0" layoutX="42.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="dontPassLineLabel" layoutX="157.0" layoutY="15.0" textFill="#51ff00">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
          </children></Pane>
-      <Pane fx:id="fieldPane" layoutX="207.0" layoutY="443.0" prefHeight="212.0" prefWidth="769.0">
+      <Pane fx:id="fieldPane" layoutX="207.0" layoutY="443.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="212.0" prefWidth="769.0">
          <children>
-            <Label fx:id="fieldLabel" layoutX="544.0" layoutY="159.0" text="Label" />
-            <ImageView fx:id="fieldImage" fitHeight="36.0" fitWidth="39.0" layoutX="542.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="fieldLabel" layoutX="657.0" layoutY="157.0" textFill="#51ff00">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
+            <ImageView fx:id="fieldImage" fitHeight="44.0" fitWidth="48.0" layoutX="542.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
          </children></Pane>
-      <Pane fx:id="comePane" layoutX="207.0" layoutY="233.0" prefHeight="212.0" prefWidth="769.0">
+      <Pane fx:id="comePane" layoutX="207.0" layoutY="233.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="212.0" prefWidth="769.0">
          <children>
-            <ImageView fx:id="comeImage" fitHeight="36.0" fitWidth="39.0" layoutX="579.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="comeLabel" layoutX="581.0" layoutY="161.0" text="Label" />
+            <ImageView fx:id="comeImage" fitHeight="44.0" fitWidth="48.0" layoutX="579.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="comeLabel" layoutX="681.0" layoutY="159.0" textFill="#51ff00">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
          </children></Pane>
-      <Pane fx:id="sevenPane" layoutX="995.0" layoutY="259.0" prefHeight="89.0" prefWidth="344.0">
+      <Pane fx:id="sevenPane" layoutX="995.0" layoutY="259.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="344.0">
          <children>
-            <ImageView fx:id="sevenImage" fitHeight="35.0" fitWidth="39.0" layoutX="153.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="sevenLabel" layoutX="155.0" layoutY="34.0" text="Label" />
+            <ImageView fx:id="sevenImage" fitHeight="44.0" fitWidth="48.0" layoutX="153.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="sevenLabel" layoutX="155.0" layoutY="34.0" textFill="#51ff00">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
          </children></Pane>
-      <Pane fx:id="anyCrapsPane" layoutX="995.0" layoutY="716.0" prefHeight="89.0" prefWidth="344.0">
+      <Pane fx:id="anyCrapsPane" layoutX="995.0" layoutY="716.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="344.0">
          <children>
-            <ImageView fx:id="anyCrapsImage" fitHeight="35.0" fitWidth="39.0" layoutX="153.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="hardCrapsLabel" layoutX="155.0" layoutY="35.0" text="Label" />
+            <ImageView fx:id="anyCrapsImage" fitHeight="44.0" fitWidth="48.0" layoutX="153.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="hardCrapsLabel" layoutX="155.0" layoutY="35.0" textFill="#51ff00">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
          </children></Pane>
-      <GridPane fx:id="hardPane" layoutX="995.0" layoutY="348.0" prefHeight="362.0" prefWidth="344.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" percentHeight="26.5" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="26.5" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="26.5" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <Pane layoutX="207.0" layoutY="58.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="175.0" prefWidth="150.0">
          <children>
-            <ImageView fx:id="hardFourImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hardTwelveImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ImageView fx:id="hardTwoImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3" />
-            <ImageView fx:id="hardEightImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ImageView fx:id="hardElevenImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ImageView fx:id="hardThreeImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-            <ImageView fx:id="hardSixImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-            <ImageView fx:id="hardTenImage" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <Label fx:id="hardFourLabel" text="Label" />
-            <Label fx:id="hardTwelveLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="hardTwoLabel" text="Label" GridPane.rowIndex="3" />
-            <Label fx:id="hardElevenLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="hardThreeLabel" text="Label" GridPane.rowIndex="2" />
-            <Label fx:id="hardEightLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="hardSixLabel" text="Label" GridPane.rowIndex="1" />
-            <Label fx:id="hardTenLabel" text="Label" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
-      <Pane layoutX="207.0" layoutY="58.0" prefHeight="175.0" prefWidth="150.0">
-         <children>
-            <ImageView fx:id="onOffButton" fitHeight="35.0" fitWidth="39.0" layoutX="14.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dontComeImage" fitHeight="35.0" fitWidth="39.0" layoutX="86.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="dontComeLabel" layoutX="88.0" layoutY="102.0" text="Label" />
+            <ImageView fx:id="onOffButton" fitHeight="44.0" fitWidth="48.0" layoutX="14.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dontComeImage" fitHeight="44.0" fitWidth="48.0" layoutX="86.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="dontComeLabel" layoutX="88.0" layoutY="102.0" textFill="#51ff00">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
          </children>
       </Pane>
       <ImageView fx:id="chip$" fitHeight="56.0" fitWidth="70.0" layoutX="768.0" layoutY="897.0" pickOnBounds="true" preserveRatio="true">
@@ -200,5 +141,345 @@
             <Image url="@../../../images/moneyChip.png" />
          </image>
       </ImageView>
+      <Pane fx:id="placePaneFour" layoutX="357.0" layoutY="201.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="-2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="fourPlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="fourPlaceLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="placePaneTen" layoutX="1128.0" layoutY="201.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="tenPlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="tenPlaceLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="placePaneNine" layoutX="976.0" layoutY="201.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <ImageView fx:id="ninePlaceImage" fitHeight="44.0" fitWidth="48.0" layoutX="5.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox alignment="CENTER" layoutY="2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="ninePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="ninePlaceLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="placePaneEight" layoutX="824.0" layoutY="201.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="-2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="eightPlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="eightPlaceLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="placePaneSix" layoutX="666.0" layoutY="201.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="-2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="sixPlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="sixPlaceLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="placePaneFive" layoutX="513.0" layoutY="201.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="fivePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="fivePlaceLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="dontComePaneFour" layoutX="359.0" layoutY="58.0" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" layoutY="2.0" prefHeight="32.0" prefWidth="158.0" spacing="80.0">
+               <children>
+                  <ImageView fx:id="fourComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="fourComePlaceLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="dontComePaneFive" layoutX="513.0" layoutY="58.0" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="-2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="fiveComePlaceImage" fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="dontComePaneSix" layoutX="666.0" layoutY="58.0" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="sixComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="dontComePaneEight" layoutX="816.0" layoutY="58.0" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="eightComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="dontComePaneNine" layoutX="976.0" layoutY="58.0" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="-2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="nineComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="dontComePaneTen" layoutX="1134.0" layoutY="58.0" prefHeight="32.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="tenComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="fourComePane" layoutX="359.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="33.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="fourComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="fourComeLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="fiveComePane" layoutX="513.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="34.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="fiveComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="fiveComeLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="sixComePane" layoutX="666.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="32.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="sixComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="sixComeLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="eightComePane" layoutX="824.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="32.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="eightComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="eightComeLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="nineComePane" layoutX="976.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="40.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="nineComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nineComeLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="tenComePane" layoutX="1128.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="40.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+               <children>
+                  <ImageView fx:id="tenComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="tenComeLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="hardPaneFour" layoutX="995.0" layoutY="348.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="171.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="47.0" spacing="25.0">
+               <children>
+                  <ImageView fx:id="hardFourImage" fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hardFourLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="hardPaneTen" layoutX="1167.0" layoutY="348.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="171.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="47.0" spacing="25.0">
+               <children>
+                  <ImageView fx:id="hardTenImage" fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hardTenLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="hardPaneSix" layoutX="995.0" layoutY="443.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="171.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="47.0" spacing="25.0">
+               <children>
+                  <ImageView fx:id="hardSixImage" fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hardSixLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="hardPaneEight" layoutX="1167.0" layoutY="443.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="171.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="47.0" spacing="25.0">
+               <children>
+                  <ImageView fx:id="hardEightImage" fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hardEightLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="hardPaneThree" layoutX="995.0" layoutY="532.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="171.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="47.0" spacing="25.0">
+               <children>
+                  <ImageView fx:id="hardThreeImage" fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hardThreeLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="hardPaneEleven" layoutX="1167.0" layoutY="532.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="171.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="47.0" spacing="25.0">
+               <children>
+                  <ImageView fx:id="hardElevenImage" fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hardElevenLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="hardPaneTwo" layoutX="995.0" layoutY="621.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="171.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="47.0" spacing="25.0">
+               <children>
+                  <ImageView fx:id="hardTwoImage" fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hardTwoLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="hardPaneTwelve" layoutX="1167.0" layoutY="621.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" prefHeight="89.0" prefWidth="171.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="47.0" spacing="25.0">
+               <children>
+                  <ImageView fx:id="hardTwelveImage" fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hardTwelveLabel" textFill="#51ff00">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
