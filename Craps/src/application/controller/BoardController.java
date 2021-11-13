@@ -3,6 +3,8 @@ package application.controller;
 import java.io.IOException;
 
 import application.model.Chip;
+import application.model.Player;
+import application.model.Puck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -121,7 +123,7 @@ public class BoardController {
     private Pane dontComePaneNine;
 
     @FXML
-    private Label hardCrapsLabel;
+    private Label anyCrapsLabel;
 
     @FXML
     private Label fivePlaceLabel;
@@ -341,6 +343,39 @@ public class BoardController {
 
     @FXML
     private Pane hardPaneFour;
+    
+    @FXML
+    private ImageView offPuck;
+    
+    @FXML
+    private ImageView onPuckFour;
+    
+    @FXML
+    private ImageView onPuckFive;
+    
+    @FXML
+    private ImageView onPuckSix;
+    
+    @FXML
+    private ImageView onPuckEight;
+    
+    @FXML
+    private ImageView onPuckNine;
+    
+    @FXML
+    private ImageView onPuckTen;
+    
+    @FXML
+    private ImageView puck1;
+    
+    @FXML
+    private ImageView puck2;
+    
+    @FXML
+    private Label invalidBetLabel;
+    
+    @FXML
+    private Pane dontComePane;
 
     @FXML
     void rollDice(ActionEvent event) {
@@ -382,15 +417,22 @@ public class BoardController {
     Chip totalWagerHardEleven = new Chip("$", 0, chip$);
     Chip totalBets = new Chip("$", 0, chip$);
     Chip sourceChip = new Chip();
+    Puck off = new Puck(true, puck1);
+    Puck on = new Puck(false, puck2);
+    Player player = new Player(0, 0, 0);
     /* need to add dont come number bets */
     
-    public void initialize() {
+    public void initialize(int bankRoll) {
 //    	dollar1.setChipImg(chip1);
 //    	dollar5.setChipImg(chip5);
 //    	dollar10.setChipImg(chip10);
 //    	dollar25.setChipImg(chip25);
 //    	dollar50.setChipImg(chip50);
 //    	dollar100.setChipImg(chip100);
+    	player.setStartingCash(bankRoll);
+    	player.setCurrentCash(bankRoll);
+    	balanceLabel.setText("" + String.valueOf(bankRoll));
+    	wagerLabel.setText("0");
     	totalWagerPassLine.setChipImg(chip$);
     	totalWagerDontPassLine.setChipImg(chip$);
         totalWagerField.setChipImg(chip$);
@@ -491,61 +533,249 @@ public class BoardController {
     void handleDrop(DragEvent event) {
     	Image img = event.getDragboard().getImage();
     	Object source = event.getSource();
-    	if(source == passLinePane1 || source == passLinePane2) {
-    		passLineImage.setImage(img);
-    		totalWagerPassLine.setChipValue(totalWagerPassLine.getChipValue() + sourceChip.getChipValue());
-    		passLineLabel.setText("" + totalWagerPassLine.getChipValue());
+    	if( sourceChip.getChipValue() + Integer.parseInt(wagerLabel.getText()) > Integer.parseInt(balanceLabel.getText())) {
+    		invalidBetLabel.setText("You don't have enough money for that bet!");
     	}
-    	if( source == dontPassLinePane1 || source == dontPassLinePane2 ) {
-    		dontPassLineImage.setImage(img);
-    		totalWagerDontPassLine.setChipValue(totalWagerDontPassLine.getChipValue() + sourceChip.getChipValue());
-    		dontPassLineLabel.setText("" + totalWagerDontPassLine.getChipValue());
-    	}
-    	if( source == fieldPane ) {
-    		fieldImage.setImage(img);
-    		totalWagerField.setChipValue(totalWagerField.getChipValue() + sourceChip.getChipValue());
-    		fieldLabel.setText("" + totalWagerField.getChipValue());
-    	}
-    	if( source == comePane ) {
-    		comeImage.setImage(img);
-    		totalWagerCome.setChipValue(totalWagerCome.getChipValue() + sourceChip.getChipValue());
-    		comeLabel.setText("" + totalWagerCome.getChipValue());
-    	}
-
-    	if( source == placePaneFour ) {
-    		fourPlaceImage.setImage(img);
-    		totalWagerFourPlace.setChipValue(totalWagerFourPlace.getChipValue() + sourceChip.getChipValue());
-    		fourPlaceLabel.setText("" + totalWagerFourPlace.getChipValue());
-    	}
-    	if( source == placePaneFive ) {
-    		fivePlaceImage.setImage(img);
-    		totalWagerFivePlace.setChipValue(totalWagerFivePlace.getChipValue() + sourceChip.getChipValue());
-    		fivePlaceLabel.setText("" + totalWagerFivePlace.getChipValue());
-    	}
-    	if( source == placePaneSix ) {
-    		sixPlaceImage.setImage(img);
-    		totalWagerSixPlace.setChipValue(totalWagerSixPlace.getChipValue() + sourceChip.getChipValue());
-    		sixPlaceLabel.setText("" + totalWagerSixPlace.getChipValue());
-    	}
-    	if( source == placePaneEight ) {
-    		eightPlaceImage.setImage(img);
-    		totalWagerEightPlace.setChipValue(totalWagerEightPlace.getChipValue() + sourceChip.getChipValue());
-    		eightPlaceLabel.setText("" + totalWagerEightPlace.getChipValue());
-    	}
-    	if( source == placePaneNine ) {
-    		ninePlaceImage.setImage(img);
-    		totalWagerNinePlace.setChipValue(totalWagerNinePlace.getChipValue() + sourceChip.getChipValue());
-    		ninePlaceLabel.setText("" + totalWagerNinePlace.getChipValue());
-    	}
-    	if( source == placePaneTen ) {
-    		tenPlaceImage.setImage(img);
-    		totalWagerTenPlace.setChipValue(totalWagerTenPlace.getChipValue() + sourceChip.getChipValue());
-    		tenPlaceLabel.setText("" + totalWagerTenPlace.getChipValue());
-    	}
-    	if( source == placePaneTen ) {
-    		tenPlaceImage.setImage(img);
-    		totalWagerTenPlace.setChipValue(totalWagerTenPlace.getChipValue() + sourceChip.getChipValue());
-    		tenPlaceLabel.setText("" + totalWagerTenPlace.getChipValue());
+    	else {
+    		invalidBetLabel.setText("");
+    		if( off.isActive() ) {
+        		if(source == passLinePane1 || source == passLinePane2) {
+            		passLineImage.setImage(img);
+            		totalWagerPassLine.setChipValue(totalWagerPassLine.getChipValue() + sourceChip.getChipValue());
+            		passLineLabel.setText("" + totalWagerPassLine.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == dontPassLinePane1 || source == dontPassLinePane2 ) {
+            		dontPassLineImage.setImage(img);
+            		totalWagerDontPassLine.setChipValue(totalWagerDontPassLine.getChipValue() + sourceChip.getChipValue());
+            		dontPassLineLabel.setText("" + totalWagerDontPassLine.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == fieldPane ) {
+            		fieldImage.setImage(img);
+            		totalWagerField.setChipValue(totalWagerField.getChipValue() + sourceChip.getChipValue());
+            		fieldLabel.setText("" + totalWagerField.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneFour ) {
+            		hardFourImage.setImage(img);
+            		totalWagerHardFour.setChipValue(totalWagerHardFour.getChipValue() + sourceChip.getChipValue());
+            		hardFourLabel.setText("" + totalWagerHardFour.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneTwo ) {
+            		hardTwoImage.setImage(img);
+            		totalWagerHardTwo.setChipValue(totalWagerHardTwo.getChipValue() + sourceChip.getChipValue());
+            		hardTwoLabel.setText("" + totalWagerHardTwo.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneTen ) {
+            		hardTenImage.setImage(img);
+            		totalWagerHardTen.setChipValue(totalWagerHardTen.getChipValue() + sourceChip.getChipValue());
+            		hardTenLabel.setText("" + totalWagerHardTen.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneTwelve ) {
+            		hardTwelveImage.setImage(img);
+            		totalWagerHardTwelve.setChipValue(totalWagerHardTwelve.getChipValue() + sourceChip.getChipValue());
+            		hardTwelveLabel.setText("" + totalWagerHardTwelve.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneEleven ) {
+            		hardElevenImage.setImage(img);
+            		totalWagerHardEleven.setChipValue(totalWagerHardEleven.getChipValue() + sourceChip.getChipValue());
+            		hardElevenLabel.setText("" + totalWagerHardEleven.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneEight ) {
+            		hardEightImage.setImage(img);
+            		totalWagerHardEight.setChipValue(totalWagerHardEight.getChipValue() + sourceChip.getChipValue());
+            		hardEightLabel.setText("" + totalWagerHardEight.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneSix ) {
+            		hardSixImage.setImage(img);
+            		totalWagerHardSix.setChipValue(totalWagerHardSix.getChipValue() + sourceChip.getChipValue());
+            		hardSixLabel.setText("" + totalWagerHardSix.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneThree ) {
+            		hardThreeImage.setImage(img);
+            		totalWagerHardThree.setChipValue(totalWagerHardThree.getChipValue() + sourceChip.getChipValue());
+            		hardThreeLabel.setText("" + totalWagerHardThree.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneFour ) {
+            		fourPlaceImage.setImage(img);
+            		totalWagerFourPlace.setChipValue(totalWagerFourPlace.getChipValue() + sourceChip.getChipValue());
+            		fourPlaceLabel.setText("" + totalWagerFourPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneFive ) {
+            		fivePlaceImage.setImage(img);
+            		totalWagerFivePlace.setChipValue(totalWagerFivePlace.getChipValue() + sourceChip.getChipValue());
+            		fivePlaceLabel.setText("" + totalWagerFivePlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneSix ) {
+            		sixPlaceImage.setImage(img);
+            		totalWagerSixPlace.setChipValue(totalWagerSixPlace.getChipValue() + sourceChip.getChipValue());
+            		sixPlaceLabel.setText("" + totalWagerSixPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneEight ) {
+            		eightPlaceImage.setImage(img);
+            		totalWagerEightPlace.setChipValue(totalWagerEightPlace.getChipValue() + sourceChip.getChipValue());
+            		eightPlaceLabel.setText("" + totalWagerEightPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneNine ) {
+            		ninePlaceImage.setImage(img);
+            		totalWagerNinePlace.setChipValue(totalWagerNinePlace.getChipValue() + sourceChip.getChipValue());
+            		ninePlaceLabel.setText("" + totalWagerNinePlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneTen ) {
+            		tenPlaceImage.setImage(img);
+            		totalWagerTenPlace.setChipValue(totalWagerTenPlace.getChipValue() + sourceChip.getChipValue());
+            		tenPlaceLabel.setText("" + totalWagerTenPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == sevenPane ) {
+            		sevenImage.setImage(img);
+            		totalWagerSeven.setChipValue(totalWagerSeven.getChipValue() + sourceChip.getChipValue());
+            		sevenLabel.setText("" + totalWagerSeven.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == anyCrapsPane ) {
+            		anyCrapsImage.setImage(img);
+            		totalWagerAnyCraps.setChipValue(totalWagerAnyCraps.getChipValue() + sourceChip.getChipValue());
+            		anyCrapsLabel.setText("" + totalWagerAnyCraps.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+        	}
+        	else {
+            	if( source == fieldPane ) {
+            		fieldImage.setImage(img);
+            		totalWagerField.setChipValue(totalWagerField.getChipValue() + sourceChip.getChipValue());
+            		fieldLabel.setText("" + totalWagerField.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == comePane ) {
+            		comeImage.setImage(img);
+            		totalWagerCome.setChipValue(totalWagerCome.getChipValue() + sourceChip.getChipValue());
+            		comeLabel.setText("" + totalWagerCome.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == dontComePane ) {
+            		dontComeImage.setImage(img);
+            		totalWagerDontCome.setChipValue(totalWagerDontCome.getChipValue() + sourceChip.getChipValue());
+            		dontComeLabel.setText("" + totalWagerDontCome.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneFour ) {
+            		fourPlaceImage.setImage(img);
+            		totalWagerFourPlace.setChipValue(totalWagerFourPlace.getChipValue() + sourceChip.getChipValue());
+            		fourPlaceLabel.setText("" + totalWagerFourPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneFive ) {
+            		fivePlaceImage.setImage(img);
+            		totalWagerFivePlace.setChipValue(totalWagerFivePlace.getChipValue() + sourceChip.getChipValue());
+            		fivePlaceLabel.setText("" + totalWagerFivePlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneSix ) {
+            		sixPlaceImage.setImage(img);
+            		totalWagerSixPlace.setChipValue(totalWagerSixPlace.getChipValue() + sourceChip.getChipValue());
+            		sixPlaceLabel.setText("" + totalWagerSixPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneEight ) {
+            		eightPlaceImage.setImage(img);
+            		totalWagerEightPlace.setChipValue(totalWagerEightPlace.getChipValue() + sourceChip.getChipValue());
+            		eightPlaceLabel.setText("" + totalWagerEightPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneNine ) {
+            		ninePlaceImage.setImage(img);
+            		totalWagerNinePlace.setChipValue(totalWagerNinePlace.getChipValue() + sourceChip.getChipValue());
+            		ninePlaceLabel.setText("" + totalWagerNinePlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneTen ) {
+            		tenPlaceImage.setImage(img);
+            		totalWagerTenPlace.setChipValue(totalWagerTenPlace.getChipValue() + sourceChip.getChipValue());
+            		tenPlaceLabel.setText("" + totalWagerTenPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == placePaneTen ) {
+            		tenPlaceImage.setImage(img);
+            		totalWagerTenPlace.setChipValue(totalWagerTenPlace.getChipValue() + sourceChip.getChipValue());
+            		tenPlaceLabel.setText("" + totalWagerTenPlace.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneFour ) {
+            		hardFourImage.setImage(img);
+            		totalWagerHardFour.setChipValue(totalWagerHardFour.getChipValue() + sourceChip.getChipValue());
+            		hardFourLabel.setText("" + totalWagerHardFour.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneTwo ) {
+            		hardTwoImage.setImage(img);
+            		totalWagerHardTwo.setChipValue(totalWagerHardTwo.getChipValue() + sourceChip.getChipValue());
+            		hardTwoLabel.setText("" + totalWagerHardTwo.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}if( source == hardPaneTen ) {
+            		hardTenImage.setImage(img);
+            		totalWagerHardTen.setChipValue(totalWagerHardTen.getChipValue() + sourceChip.getChipValue());
+            		hardTenLabel.setText("" + totalWagerHardTen.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneTwelve ) {
+            		hardTwelveImage.setImage(img);
+            		totalWagerHardTwelve.setChipValue(totalWagerHardTwelve.getChipValue() + sourceChip.getChipValue());
+            		hardTwelveLabel.setText("" + totalWagerHardTwelve.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneEleven ) {
+            		hardElevenImage.setImage(img);
+            		totalWagerHardEleven.setChipValue(totalWagerHardEleven.getChipValue() + sourceChip.getChipValue());
+            		hardElevenLabel.setText("" + totalWagerHardEleven.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneEight ) {
+            		hardEightImage.setImage(img);
+            		totalWagerHardEight.setChipValue(totalWagerHardEight.getChipValue() + sourceChip.getChipValue());
+            		hardEightLabel.setText("" + totalWagerHardEight.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneSix ) {
+            		hardSixImage.setImage(img);
+            		totalWagerHardSix.setChipValue(totalWagerHardSix.getChipValue() + sourceChip.getChipValue());
+            		hardSixLabel.setText("" + totalWagerHardSix.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == hardPaneThree ) {
+            		hardThreeImage.setImage(img);
+            		totalWagerHardThree.setChipValue(totalWagerHardThree.getChipValue() + sourceChip.getChipValue());
+            		hardThreeLabel.setText("" + totalWagerHardThree.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == sevenPane ) {
+            		sevenImage.setImage(img);
+            		totalWagerSeven.setChipValue(totalWagerSeven.getChipValue() + sourceChip.getChipValue());
+            		sevenLabel.setText("" + totalWagerSeven.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	if( source == anyCrapsPane ) {
+            		anyCrapsImage.setImage(img);
+            		totalWagerAnyCraps.setChipValue(totalWagerAnyCraps.getChipValue() + sourceChip.getChipValue());
+            		anyCrapsLabel.setText("" + totalWagerAnyCraps.getChipValue());
+            		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) + sourceChip.getChipValue()));
+            	}
+            	
+        	}
     	}
     	
     }

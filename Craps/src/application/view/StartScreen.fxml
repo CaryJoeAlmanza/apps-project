@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
@@ -16,12 +17,14 @@
          </image>
       </ImageView>
       <Button fx:id="playButton" layoutX="384.0" layoutY="453.0" mnemonicParsing="false" onAction="#toGame" prefHeight="94.0" prefWidth="98.0" text="Play!" />
-      <TextField fx:id="nameField" layoutX="246.0" layoutY="216.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="31.0" layoutX="246.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="187.0" />
-      <Label layoutX="278.0" layoutY="190.0" text="Enter Player Name" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="31.0" layoutX="433.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="187.0" />
-      <TextField fx:id="balanceField" layoutX="433.0" layoutY="216.0" />
-      <Label layoutX="454.0" layoutY="190.0" text="Enter Starting Balance" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="31.0" layoutX="340.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="187.0" />
+      <TextField fx:id="balanceField" alignment="CENTER" layoutX="340.0" layoutY="216.0" />
+      <Label layoutX="360.0" layoutY="190.0" text="Enter Starting Balance" />
       <Button fx:id="rulesButton" layoutX="765.0" layoutY="508.0" mnemonicParsing="false" onAction="#toRules" text="How To Play?" />
+      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="254.0" prefHeight="90.0" prefWidth="857.0" textFill="#f6ff00">
+         <font>
+            <Font name="Arial Black" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
