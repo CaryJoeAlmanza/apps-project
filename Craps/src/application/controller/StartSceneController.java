@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -27,6 +28,9 @@ public class StartSceneController {
 
     @FXML
     private TextField balanceField;
+    
+    @FXML
+    private Label errorLabel;
 
     @FXML
     private Button playButton;
@@ -38,18 +42,24 @@ public class StartSceneController {
     		FXMLLoader loader = new FXMLLoader();
     		loader.setLocation(StartSceneController.class.getResource("../../application/view/Board.fxml"));
     		AnchorPane startPane = (AnchorPane) loader.load();
-    		//BoardController controller = loader.getController();
-    		//controller.setLabels(usernameField.getText());
-    		//controller.initalize();
-    		Scene scene = new Scene(startPane);
-    		Stage stage= new Stage();
-    		stage.setScene(scene);
-    		stage.show();
-    		Stage startStage = (Stage) playButton.getScene().getWindow();
-    		startStage.close();
-    		
+    		BoardController controller = loader.getController();
+    		//String cash = new String();
+    		//cash = balanceField.getText();
+    		if( balanceField.getText().isEmpty() || Integer.parseInt(balanceField.getText()) <= 0) {
+    			errorLabel.setText("Error: please enter a whole number greater than 0");
+    			balanceField.clear();
+    		}
+    		else {
+    			int startingCash = Integer.parseInt(balanceField.getText());
+        		controller.initialize(startingCash);
+        		Scene scene = new Scene(startPane);
+        		Stage stage= new Stage();
+        		stage.setScene(scene);
+        		stage.show();
+        		Stage startStage = (Stage) playButton.getScene().getWindow();
+        		startStage.close();
+    		}
     	}
-
     }
 
     @FXML
