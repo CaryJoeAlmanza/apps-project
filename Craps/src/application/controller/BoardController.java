@@ -1,11 +1,10 @@
 package application.controller;
 
+import java.io.File;
 import java.io.IOException;
 
-import application.model.Chip;
-import application.model.Player;
-import application.model.Puck;
-import javafx.event.ActionEvent;
+import application.model.*;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -169,9 +168,6 @@ public class BoardController {
 
     @FXML
     private Label dontPassLineLabel;
-
-    @FXML
-    private Label rollLabel;
 
     @FXML
     private Pane hardPaneEleven;
@@ -376,11 +372,12 @@ public class BoardController {
     
     @FXML
     private Pane dontComePane;
-
+    
     @FXML
-    void rollDice(ActionEvent event) {
-
-    }
+    private ImageView die1Image;
+    
+    @FXML
+    private ImageView die2Image;
     
 //    Chip dollar1 = new Chip("1", 1, chip1);
 //    Chip dollar5 = new Chip("5", 5, chip5);
@@ -420,6 +417,9 @@ public class BoardController {
     Puck off = new Puck(true, puck1);
     Puck on = new Puck(false, puck2);
     Player player = new Player(0, 0, 0);
+    Game game = new Game();
+//    Die d1 = new Die();
+//    Die d2 = new Die();
     /* need to add dont come number bets */
     
     public void initialize(int bankRoll) {
@@ -461,6 +461,188 @@ public class BoardController {
         totalWagerHardThree.setChipImg(chip$);
         totalWagerHardEleven.setChipImg(chip$);
         totalBets.setChipImg(chip$);
+        off.setPuckImg(puck1);
+        on.setPuckImg(puck2);
+        offPuck.setImage(off.getPuckImg().getImage());
+        clock = new Roller();
+        setDiceImages(game.getD1().getTop(), game.getD2().getTop());
+    }
+    
+    private Roller clock;
+    
+    private class Roller extends AnimationTimer{
+
+    	private long FRAMES_PER_SEC = 50L;
+    	private long INTERVAL = 1000000000L / FRAMES_PER_SEC;
+    	private int MAX_ROLLS = 20;
+    	
+    	private long last = 0;
+    	private int count = 0;
+    	
+		@Override
+		public void handle(long now) {
+			if( now - last > INTERVAL) {
+				int rando1 = 1 + (int)(Math.random() * 5);
+				int rando2 = 1 + (int)(Math.random() * 5);
+				setDiceImages(rando1, rando2);
+				last = now;
+				count++;
+				if( count> MAX_ROLLS) {
+					clock.stop();
+					roll();
+					count = 0;
+					
+				}
+			}
+		}
+    }
+    
+    public void setDiceImages(int top1, int top2) {
+    	File f  = new File("images/dice" + top1 + ".png");
+    	File f2 = new File("images/dice" + top2 + ".png");
+    	die1Image.setImage(new Image(f.toURI().toString()));
+    	die2Image.setImage(new Image(f2.toURI().toString()));
+    }
+    
+    public void updateViews() {
+    	setDiceImages(game.getD1().getTop(), game.getD2().getTop());
+    }
+    
+    public void roll() {
+    	game.roll();
+    	updateViews();
+    	int face1 = game.getD1().getTop();
+    	int face2 = game.getD2().getTop();
+    	int sumOfDice = face1 + face2;
+    	if( off.isActive() ) {
+    		int passBet = totalWagerPassLine.getChipValue();
+    		int dontPassBet = totalWagerDontPassLine.getChipValue();
+    		int hard2Bet = totalWagerHardTwo.getChipValue();
+    		int hard3Bet = totalWagerHardThree.getChipValue();
+    		int hard4Bet = totalWagerHardFour.getChipValue();
+    		int hard6Bet = totalWagerHardSix.getChipValue();
+    		int hard8Bet = totalWagerHardEight.getChipValue();
+    		int hard10Bet = totalWagerHardTen.getChipValue();
+    		int hard11Bet = totalWagerHardEleven.getChipValue();
+    		int hard12Bet = totalWagerHardTwelve.getChipValue();
+    		
+    		if( face1 == 1 && face2 == 1 ) {
+    			int hard2BetPay = hard2Bet * 30;
+    			player.setCurrentCash(player.getCurrentCash() + hard2BetPay);
+    			totalWagerHardTwo.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		else {
+    			player.setCurrentCash(player.getCurrentCash() - hard2Bet);
+    			totalWagerHardTwo.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		if( face1 == 6 && face2 == 6 ) {
+    			int hard12BetPay = hard12Bet * 30;
+    			player.setCurrentCash(player.getCurrentCash() + hard12BetPay);
+    			totalWagerHardTwelve.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		else {
+    			player.setCurrentCash(player.getCurrentCash() - hard12Bet);
+    			totalWagerHardTwelve.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		if( (face1 == 1 && face2 == 2) || (face1 == 2 && face2 == 1) ) {
+    			int hard3BetPay = hard3Bet * 15;
+    			player.setCurrentCash(player.getCurrentCash() + hard3BetPay);
+    			totalWagerHardThree.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		else {
+    			player.setCurrentCash(player.getCurrentCash() - hard3Bet );
+    			totalWagerHardThree.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		if( face1 == 2 && face2 == 2 ) {
+    			int hard4BetPay = hard4Bet * 7;
+    			player.setCurrentCash(player.getCurrentCash() + hard4BetPay);
+    			totalWagerHardFour.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		else {
+    			player.setCurrentCash(player.getCurrentCash() - hard4Bet );
+    			totalWagerHardFour.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		if( face1 == 3 && face2 == 3 ) {
+    			int hard6BetPay = hard6Bet * 9;
+    			player.setCurrentCash(player.getCurrentCash() + hard6BetPay);
+    			totalWagerHardSix.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		else {
+    			player.setCurrentCash(player.getCurrentCash() - hard6Bet );
+    			totalWagerHardSix.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		if( face1 == 4 && face2 == 4 ) {
+    			int hard8BetPay = hard8Bet * 9;
+    			player.setCurrentCash(player.getCurrentCash() + hard8BetPay);
+    			totalWagerHardEight.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		else {
+    			player.setCurrentCash(player.getCurrentCash() - hard8Bet );
+    			totalWagerHardEight.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		if( face1 == 5 && face2 == 5 ) {
+    			int hard10BetPay = hard10Bet * 7;
+    			player.setCurrentCash(player.getCurrentCash() + hard10BetPay);
+    			totalWagerHardTen.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		else {
+    			player.setCurrentCash(player.getCurrentCash() - hard10Bet );
+    			totalWagerHardTen.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		if( (face1 == 5 && face2 == 6) || (face1 == 6 && face2 == 5) ) {
+    			int hard11BetPay = hard11Bet * 15;
+    			player.setCurrentCash(player.getCurrentCash() + hard11BetPay);
+    			totalWagerHardEleven.setChipValue(0);
+    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		}
+    		else {
+    			player.setCurrentCash(player.getCurrentCash() - hard11Bet );
+    			totalWagerHardEleven.setChipValue(0);
+    			balanceLabel.setText("" + String.valueOf(player.getCurrentCash()));
+    		}
+    		hardTwoImage.setImage(null);
+			hardTwoLabel.setText("");
+			hardThreeImage.setImage(null);
+			hardThreeLabel.setText("");
+			hardFourImage.setImage(null);
+			hardFourLabel.setText("");
+			hardSixImage.setImage(null);
+			hardSixLabel.setText("");
+			hardEightImage.setImage(null);
+			hardEightLabel.setText("");
+			hardTenImage.setImage(null);
+			hardTenLabel.setText("");
+			hardElevenImage.setImage(null);
+			hardElevenLabel.setText("");
+			hardTwelveImage.setImage(null);
+			hardTwelveLabel.setText("");
+			wagerLabel.setText("0");
+    	}
+    	
+    }
+    
+    public void rollAnimation() throws InterruptedException {
+    	if(Integer.parseInt(wagerLabel.getText()) <= 0) {
+    		invalidBetLabel.setText("You need to place a bet for the first roll!");
+    	}
+    	else {
+    		invalidBetLabel.setText("");
+    		clock.start();
+    	}
     }
     
     @FXML
