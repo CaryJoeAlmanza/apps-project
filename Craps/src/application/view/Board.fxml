@@ -18,15 +18,7 @@
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Button fx:id="rollButton" alignment="CENTER" layoutX="1156.0" layoutY="851.0" mnemonicParsing="false" onAction="#rollDice" prefHeight="150.0" prefWidth="193.0" text="Roll!" />
-      <Label alignment="CENTER" layoutX="955.0" layoutY="862.0" prefHeight="43.0" prefWidth="164.0" text="Total Roll">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-      <Label fx:id="rollLabel" alignment="CENTER" layoutX="1002.0" layoutY="899.0" prefHeight="70.0" prefWidth="70.0" text="0">
-         <font>
-            <Font size="36.0" />
-         </font></Label>
+      <Button fx:id="rollButton" alignment="CENTER" layoutX="1156.0" layoutY="851.0" mnemonicParsing="false" onAction="#rollAnimation" prefHeight="150.0" prefWidth="193.0" text="Roll!" />
       <Label fx:id="winLoseLabel" alignment="CENTER" layoutX="749.0" layoutY="917.0" prefHeight="21.0" prefWidth="246.0" text="You won/lost: $" textFill="#faff00">
          <font>
             <Font size="24.0" />
@@ -517,5 +509,7 @@
             <Font name="Arial Black" size="15.0" />
          </font>
       </Label>
+      <ImageView fx:id="die2Image" fitHeight="79.0" fitWidth="89.0" layoutX="1057.0" layoutY="878.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="die1Image" fitHeight="79.0" fitWidth="89.0" layoutX="966.0" layoutY="878.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
