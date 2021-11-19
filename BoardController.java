@@ -983,7 +983,7 @@ public class BoardController {
 
 	
 	  public void WinOrLose() throws IOException{ 
-		  
+		  Stage window = new Stage();
 	  
 	  if (player.getCurrentCash()==0) { 
 		  Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -993,16 +993,23 @@ public class BoardController {
 	  Button button2 = new Button("Exit");
 	  button.setOnAction(e -> { 
 		  alert.close(); 
+		  try {		  
 	  clearBoard();
 	   URL url = new File("src/application/view/StartScreen.fxml").toURI().toURL();  	
 	   mainPane = FXMLLoader.load(url);
 	    Scene scene = new Scene(mainPane);
-	    Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		   
+	    
 	    window.setScene(scene);
 	    window.show();
+		  }
+		  catch(Exception e1) {
+					e1.printStackTrace();
+				
+		  }
  });
 	  button2.setOnAction(e -> {
-		  Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		  
 		  alert.close();
 		  window.close(); });
 	  
