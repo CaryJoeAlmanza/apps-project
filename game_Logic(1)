@@ -1,0 +1,29 @@
+while(off.isActive){
+    if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() == 0)
+        {
+            switch(sumOfDice) {
+                case 7:
+                case 11:
+                    //wins
+                    player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+                    break;
+                case 2:
+                case 3:
+                case 12:
+                    //loss
+                    player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+                    balanceLabel.setText(String.valueOf(player.getCurrentCash())); 
+                default:
+                        point = sumOfDice;
+                        off.setActive(false);
+                        while(off.isActive != true) {
+                            switch(sumOfDice){
+                                case point: 
+                                    player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+                                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+                                    off.setActive(true);
+                                case 7:
+                                    player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+                                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+                                    off.setActive(true);
