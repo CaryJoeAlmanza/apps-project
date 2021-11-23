@@ -18,6 +18,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 
 public class BoardController {
+	int point;
 
     @FXML
     private Label fiveComeLabel;
@@ -344,22 +345,22 @@ public class BoardController {
     private ImageView offPuck;
     
     @FXML
-    private ImageView onPuckFour;
+    private ImageView onPuck4;
     
     @FXML
-    private ImageView onPuckFive;
+    private ImageView onPuck5;
     
     @FXML
-    private ImageView onPuckSix;
+    private ImageView onPuck6;
     
     @FXML
-    private ImageView onPuckEight;
+    private ImageView onPuck8;
     
     @FXML
-    private ImageView onPuckNine;
+    private ImageView onPuck9;
     
     @FXML
-    private ImageView onPuckTen;
+    private ImageView onPuck10;
     
     @FXML
     private ImageView puck1;
@@ -514,126 +515,210 @@ public class BoardController {
     	int face1 = game.getD1().getTop();
     	int face2 = game.getD2().getTop();
     	int sumOfDice = face1 + face2;
-    	if( off.isActive() ) {
-    		int passBet = totalWagerPassLine.getChipValue();
-    		int dontPassBet = totalWagerDontPassLine.getChipValue();
-    		int hard2Bet = totalWagerHardTwo.getChipValue();
-    		int hard3Bet = totalWagerHardThree.getChipValue();
-    		int hard4Bet = totalWagerHardFour.getChipValue();
-    		int hard6Bet = totalWagerHardSix.getChipValue();
-    		int hard8Bet = totalWagerHardEight.getChipValue();
-    		int hard10Bet = totalWagerHardTen.getChipValue();
-    		int hard11Bet = totalWagerHardEleven.getChipValue();
-    		int hard12Bet = totalWagerHardTwelve.getChipValue();
+    	//int point = face1 + face2;
+//    	if( off.isActive() ) {
+//    		int passBet = totalWagerPassLine.getChipValue();
+//    		int dontPassBet = totalWagerDontPassLine.getChipValue();
+//    		int hard2Bet = totalWagerHardTwo.getChipValue();
+//    		int hard3Bet = totalWagerHardThree.getChipValue();
+//    		int hard4Bet = totalWagerHardFour.getChipValue();
+//    		int hard6Bet = totalWagerHardSix.getChipValue();
+//    		int hard8Bet = totalWagerHardEight.getChipValue();
+//    		int hard10Bet = totalWagerHardTen.getChipValue();
+//    		int hard11Bet = totalWagerHardEleven.getChipValue();
+//    		int hard12Bet = totalWagerHardTwelve.getChipValue();
+//    		int fieldBet = totalWagerField.getChipValue();
+//    		int place4Bet = totalWagerFourPlace.getChipValue();
+//    		int place5Bet = totalWagerFivePlace.getChipValue();
+//    		int place6Bet = totalWagerSixPlace.getChipValue();
+//    		int place8Bet = totalWagerEightPlace.getChipValue();
+//    		int place9Bet = totalWagerNinePlace.getChipValue();
+//    		int place10Bet = totalWagerTenPlace.getChipValue();
+//    		
+//    		/* for place bets:
+//    		 * 4 or 10: 9 to 5
+//    		 * 5 or 9: 7 to 5
+//    		 * 6 or 8: 7 to 6
+//    		 * */
+//    		
+//    		if( face1 == 1 && face2 == 1 ) {
+//    			int hard2BetPay = hard2Bet * 30;
+//    			player.setCurrentCash(player.getCurrentCash() + hard2BetPay);
+//    			totalWagerHardTwo.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		else {
+//    			player.setCurrentCash(player.getCurrentCash() - hard2Bet);
+//    			totalWagerHardTwo.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		if( face1 == 6 && face2 == 6 ) {
+//    			int hard12BetPay = hard12Bet * 30;
+//    			player.setCurrentCash(player.getCurrentCash() + hard12BetPay);
+//    			totalWagerHardTwelve.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		else {
+//    			player.setCurrentCash(player.getCurrentCash() - hard12Bet);
+//    			totalWagerHardTwelve.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		if( (face1 == 1 && face2 == 2) || (face1 == 2 && face2 == 1) ) {
+//    			int hard3BetPay = hard3Bet * 15;
+//    			player.setCurrentCash(player.getCurrentCash() + hard3BetPay);
+//    			totalWagerHardThree.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		else {
+//    			player.setCurrentCash(player.getCurrentCash() - hard3Bet );
+//    			totalWagerHardThree.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		if( face1 == 2 && face2 == 2 ) {
+//    			int hard4BetPay = hard4Bet * 7;
+//    			player.setCurrentCash(player.getCurrentCash() + hard4BetPay);
+//    			totalWagerHardFour.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		else {
+//    			player.setCurrentCash(player.getCurrentCash() - hard4Bet );
+//    			totalWagerHardFour.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		if( face1 == 3 && face2 == 3 ) {
+//    			int hard6BetPay = hard6Bet * 9;
+//    			player.setCurrentCash(player.getCurrentCash() + hard6BetPay);
+//    			totalWagerHardSix.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		else {
+//    			player.setCurrentCash(player.getCurrentCash() - hard6Bet );
+//    			totalWagerHardSix.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		if( face1 == 4 && face2 == 4 ) {
+//    			int hard8BetPay = hard8Bet * 9;
+//    			player.setCurrentCash(player.getCurrentCash() + hard8BetPay);
+//    			totalWagerHardEight.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		else {
+//    			player.setCurrentCash(player.getCurrentCash() - hard8Bet );
+//    			totalWagerHardEight.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		if( face1 == 5 && face2 == 5 ) {
+//    			int hard10BetPay = hard10Bet * 7;
+//    			player.setCurrentCash(player.getCurrentCash() + hard10BetPay);
+//    			totalWagerHardTen.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		else {
+//    			player.setCurrentCash(player.getCurrentCash() - hard10Bet );
+//    			totalWagerHardTen.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		if( (face1 == 5 && face2 == 6) || (face1 == 6 && face2 == 5) ) {
+//    			int hard11BetPay = hard11Bet * 15;
+//    			player.setCurrentCash(player.getCurrentCash() + hard11BetPay);
+//    			totalWagerHardEleven.setChipValue(0);
+//    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+//    		}
+//    		else {
+//    			player.setCurrentCash(player.getCurrentCash() - hard11Bet );
+//    			totalWagerHardEleven.setChipValue(0);
+//    			balanceLabel.setText("" + String.valueOf(player.getCurrentCash()));
+//    		}
     		
-    		if( face1 == 1 && face2 == 1 ) {
-    			int hard2BetPay = hard2Bet * 30;
-    			player.setCurrentCash(player.getCurrentCash() + hard2BetPay);
-    			totalWagerHardTwo.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		if(off.isActive()){
+    		    if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() == 0) {
+    		    	    switch(sumOfDice) {
+    		    	    case 7:
+    		    		case 11:
+    		    			    //wins
+    		    			    player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+    		    			    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		    			    totalWagerPassLine.setChipValue(0);
+    		    			    //off.setActive(false);
+    		    			    clearBoard();
+    		    		        break;
+    		    		case 2:
+    		    		case 3:
+    		    		case 12:
+    		    			    //loss
+    		    			    player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+    		    			    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		    			    //off.setActive(false);
+    		    			    clearBoard();
+    		    			    break;
+    		    		default:
+    		    			    	point = sumOfDice;
+    		    			    	off.setActive(false);
+    		    			    	offPuck.setImage(null);
+    		    			    	if( point == 4 )
+    		    			    		onPuck4.setImage(on.getPuckImg().getImage());
+    		    			    	else if( point == 5 )
+    		    			    		onPuck5.setImage(on.getPuckImg().getImage());
+    		    			    	else if( point == 6 )
+    		    			    		onPuck6.setImage(on.getPuckImg().getImage());
+    		    			    	else if( point == 8 )
+    		    			    		onPuck8.setImage(on.getPuckImg().getImage());
+    		    			    	else if( point == 9 )
+    		    			    		onPuck9.setImage(on.getPuckImg().getImage());
+    		    			    	else if( point == 10 )
+    		    			    		onPuck10.setImage(on.getPuckImg().getImage());
+    		    	    }
+    		    }
+    		    //clearBoard();
     		}
-    		else {
-    			player.setCurrentCash(player.getCurrentCash() - hard2Bet);
-    			totalWagerHardTwo.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		if( face1 == 6 && face2 == 6 ) {
-    			int hard12BetPay = hard12Bet * 30;
-    			player.setCurrentCash(player.getCurrentCash() + hard12BetPay);
-    			totalWagerHardTwelve.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		else {
-    			player.setCurrentCash(player.getCurrentCash() - hard12Bet);
-    			totalWagerHardTwelve.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		if( (face1 == 1 && face2 == 2) || (face1 == 2 && face2 == 1) ) {
-    			int hard3BetPay = hard3Bet * 15;
-    			player.setCurrentCash(player.getCurrentCash() + hard3BetPay);
-    			totalWagerHardThree.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		else {
-    			player.setCurrentCash(player.getCurrentCash() - hard3Bet );
-    			totalWagerHardThree.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		if( face1 == 2 && face2 == 2 ) {
-    			int hard4BetPay = hard4Bet * 7;
-    			player.setCurrentCash(player.getCurrentCash() + hard4BetPay);
-    			totalWagerHardFour.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		else {
-    			player.setCurrentCash(player.getCurrentCash() - hard4Bet );
-    			totalWagerHardFour.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		if( face1 == 3 && face2 == 3 ) {
-    			int hard6BetPay = hard6Bet * 9;
-    			player.setCurrentCash(player.getCurrentCash() + hard6BetPay);
-    			totalWagerHardSix.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		else {
-    			player.setCurrentCash(player.getCurrentCash() - hard6Bet );
-    			totalWagerHardSix.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		if( face1 == 4 && face2 == 4 ) {
-    			int hard8BetPay = hard8Bet * 9;
-    			player.setCurrentCash(player.getCurrentCash() + hard8BetPay);
-    			totalWagerHardEight.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		else {
-    			player.setCurrentCash(player.getCurrentCash() - hard8Bet );
-    			totalWagerHardEight.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		if( face1 == 5 && face2 == 5 ) {
-    			int hard10BetPay = hard10Bet * 7;
-    			player.setCurrentCash(player.getCurrentCash() + hard10BetPay);
-    			totalWagerHardTen.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		else {
-    			player.setCurrentCash(player.getCurrentCash() - hard10Bet );
-    			totalWagerHardTen.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		if( (face1 == 5 && face2 == 6) || (face1 == 6 && face2 == 5) ) {
-    			int hard11BetPay = hard11Bet * 15;
-    			player.setCurrentCash(player.getCurrentCash() + hard11BetPay);
-    			totalWagerHardEleven.setChipValue(0);
-    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		}
-    		else {
-    			player.setCurrentCash(player.getCurrentCash() - hard11Bet );
-    			totalWagerHardEleven.setChipValue(0);
-    			balanceLabel.setText("" + String.valueOf(player.getCurrentCash()));
-    		}
-    		hardTwoImage.setImage(null);
-			hardTwoLabel.setText("");
-			hardThreeImage.setImage(null);
-			hardThreeLabel.setText("");
-			hardFourImage.setImage(null);
-			hardFourLabel.setText("");
-			hardSixImage.setImage(null);
-			hardSixLabel.setText("");
-			hardEightImage.setImage(null);
-			hardEightLabel.setText("");
-			hardTenImage.setImage(null);
-			hardTenLabel.setText("");
-			hardElevenImage.setImage(null);
-			hardElevenLabel.setText("");
-			hardTwelveImage.setImage(null);
-			hardTwelveLabel.setText("");
-			wagerLabel.setText("0");
+    		else{
+    			if( sumOfDice == point ) {
+    				player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+	    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+	    			off.setActive(true);
+	    			offPuck.setImage(off.getPuckImg().getImage());
+	    			clearBoard();
+    			}
+    			else if( sumOfDice == 7 ) {
+    				player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+	    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    				off.setActive(true);
+    				offPuck.setImage(off.getPuckImg().getImage());
+    				clearBoard();
+    			}
     	}
     	
     }
+
+	public void clearBoard() {
+		hardTwoImage.setImage(null);
+		hardTwoLabel.setText("");
+		hardThreeImage.setImage(null);
+		hardThreeLabel.setText("");
+		hardFourImage.setImage(null);
+		hardFourLabel.setText("");
+		hardSixImage.setImage(null);
+		hardSixLabel.setText("");
+		hardEightImage.setImage(null);
+		hardEightLabel.setText("");
+		hardTenImage.setImage(null);
+		hardTenLabel.setText("");
+		hardElevenImage.setImage(null);
+		hardElevenLabel.setText("");
+		hardTwelveImage.setImage(null);
+		hardTwelveLabel.setText("");
+		passLineImage.setImage(null);
+		passLineLabel.setText("");
+		onPuck4.setImage(null);
+		onPuck5.setImage(null);
+		onPuck6.setImage(null);
+		onPuck8.setImage(null);
+		onPuck9.setImage(null);
+		onPuck10.setImage(null);
+		totalWagerPassLine.setChipValue(0);
+		wagerLabel.setText("0");
+		
+	}
     
     public void rollAnimation() throws InterruptedException {
     	if(Integer.parseInt(wagerLabel.getText()) <= 0) {
