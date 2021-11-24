@@ -1,0 +1,121 @@
+if(off.isActive()){
+    if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() == 0) {
+            switch(sumOfDice) {
+            case 7:
+            case 11:
+                    //wins
+                    player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+                    totalWagerPassLine.setChipValue(0);
+                    //off.setActive(false);
+                    clearBoard();
+                    break;
+            case 2:
+            case 3:
+            case 12:
+                    //loss
+                    player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+                    //off.setActive(false);
+                    clearBoard();
+                    break;
+            default:
+                        point = sumOfDice;
+                        off.setActive(false);
+                        offPuck.setImage(null);
+                        if( point == 4 )
+                            onPuck4.setImage(on.getPuckImg().getImage());
+                        else if( point == 5 )
+                            onPuck5.setImage(on.getPuckImg().getImage());
+                        else if( point == 6 )
+                            onPuck6.setImage(on.getPuckImg().getImage());
+                        else if( point == 8 )
+                            onPuck8.setImage(on.getPuckImg().getImage());
+                        else if( point == 9 )
+                            onPuck9.setImage(on.getPuckImg().getImage());
+                        else if( point == 10 )
+                            onPuck10.setImage(on.getPuckImg().getImage());
+            }
+    }
+    if(totalWagerPassLine.getChipValue() == 0 && totalWagerDontPassLine.getChipValue() > 0) {
+        switch(sumOfDice) {
+            case 7:
+            case 11:
+                    //loss
+                    player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+                    totalWagerPassLine.setChipValue(0);
+                    //off.setActive(false);
+                    clearBoard();
+                    break;
+            case 3:
+                    //win
+                    player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+                    //off.setActive(false);
+                    clearBoard();
+                    break;
+            case 12:
+                    //draw
+                    //off.setActive(false);
+                    clearBoard();
+                    break;
+            default:
+                        point = sumOfDice;
+                        off.setActive(false);
+                        offPuck.setImage(null);
+                        if( point == 4 )
+                            onPuck4.setImage(on.getPuckImg().getImage());
+                        else if( point == 5 )
+                            onPuck5.setImage(on.getPuckImg().getImage());
+                        else if( point == 6 )
+                            onPuck6.setImage(on.getPuckImg().getImage());
+                        else if( point == 8 )
+                            onPuck8.setImage(on.getPuckImg().getImage());
+                        else if( point == 9 )
+                            onPuck9.setImage(on.getPuckImg().getImage());
+                        else if( point == 10 )
+                            onPuck10.setImage(on.getPuckImg().getImage());
+        }
+    }
+    if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() > 0) {
+        switch(sumOfDice) {
+            case 7:
+            case 11:
+                //wins from passline, lossses from Dontpassline
+                player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+                player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
+                balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+                clearBoard();
+                break;
+            case 2:
+            case 3:  
+                //losses from passline, wins from Dontpassline
+                player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+                player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue());
+                balanceLabel.setText(String.valueOf(player.getCurrentCash())); 
+                clearBoard();
+                break;
+            case 12:
+                //losses from passline
+                player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+                clearBoard();
+                break;
+            default: 
+                point = sumOfDice;
+                off.setActive(false);
+                offPuck.setImage(null);
+                if( point == 4 )
+                    onPuck4.setImage(on.getPuckImg().getImage());
+                else if( point == 5 )
+                    onPuck5.setImage(on.getPuckImg().getImage());
+                else if( point == 6 )
+                    onPuck6.setImage(on.getPuckImg().getImage());
+                else if( point == 8 )
+                    onPuck8.setImage(on.getPuckImg().getImage());
+                else if( point == 9 )
+                    onPuck9.setImage(on.getPuckImg().getImage());
+                else if( point == 10 )
+                    onPuck10.setImage(on.getPuckImg().getImage());
+        }
+    }
