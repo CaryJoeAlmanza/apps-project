@@ -669,11 +669,96 @@ public class BoardController {
     		    			    		onPuck10.setImage(on.getPuckImg().getImage());
     		    	    }
     		    }
+    		    else if(totalWagerPassLine.getChipValue() == 0 && totalWagerDontPassLine.getChipValue() > 0) {
+    		        switch(sumOfDice) {
+    		            case 7:
+    		            case 11:
+    		                    //loss
+    		                    player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
+    		                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		                    //totalWagerDontPassLine.setChipValue(0);
+    		                    //off.setActive(false);
+    		                    clearBoard();
+    		                    break;
+    		            case 2:
+    		            case 3:
+    		                    //win
+    		                    player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue());
+    		                    balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		                    //off.setActive(false);
+    		                    clearBoard();
+    		                    break;
+    		            case 12:
+    		                    //draw
+    		                    //off.setActive(false);
+    		                    clearBoard();
+    		                    break;
+    		            default:
+    		                        point = sumOfDice;
+    		                        off.setActive(false);
+    		                        offPuck.setImage(null);
+    		                        if( point == 4 )
+    		                            onPuck4.setImage(on.getPuckImg().getImage());
+    		                        else if( point == 5 )
+    		                            onPuck5.setImage(on.getPuckImg().getImage());
+    		                        else if( point == 6 )
+    		                            onPuck6.setImage(on.getPuckImg().getImage());
+    		                        else if( point == 8 )
+    		                            onPuck8.setImage(on.getPuckImg().getImage());
+    		                        else if( point == 9 )
+    		                            onPuck9.setImage(on.getPuckImg().getImage());
+    		                        else if( point == 10 )
+    		                            onPuck10.setImage(on.getPuckImg().getImage());
+    		        }
+    		    }
+    		    else if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() > 0) {
+    		        switch(sumOfDice) {
+    		            case 7:
+    		            case 11:
+    		                //wins from passline, lossses from Dontpassline
+    		                player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+    		                player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
+    		                balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		                clearBoard();
+    		                break;
+    		            case 2:
+    		            case 3:  
+    		                //losses from passline, wins from Dontpassline
+    		                player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+    		                player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue());
+    		                balanceLabel.setText(String.valueOf(player.getCurrentCash())); 
+    		                clearBoard();
+    		                break;
+    		            case 12:
+    		                //losses from passline
+    		                player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+    		                balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		                clearBoard();
+    		                break;
+    		            default: 
+    		                point = sumOfDice;
+    		                off.setActive(false);
+    		                offPuck.setImage(null);
+    		                if( point == 4 )
+    		                    onPuck4.setImage(on.getPuckImg().getImage());
+    		                else if( point == 5 )
+    		                    onPuck5.setImage(on.getPuckImg().getImage());
+    		                else if( point == 6 )
+    		                    onPuck6.setImage(on.getPuckImg().getImage());
+    		                else if( point == 8 )
+    		                    onPuck8.setImage(on.getPuckImg().getImage());
+    		                else if( point == 9 )
+    		                    onPuck9.setImage(on.getPuckImg().getImage());
+    		                else if( point == 10 )
+    		                    onPuck10.setImage(on.getPuckImg().getImage());
+    		        }
+    		    }
     		    //clearBoard();
     		}
     		else{
     			if( sumOfDice == point ) {
     				player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+    				player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
 	    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 	    			off.setActive(true);
 	    			offPuck.setImage(off.getPuckImg().getImage());
@@ -681,6 +766,7 @@ public class BoardController {
     			}
     			else if( sumOfDice == 7 ) {
     				player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
+    				player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue());
 	    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     				off.setActive(true);
     				offPuck.setImage(off.getPuckImg().getImage());
@@ -709,6 +795,8 @@ public class BoardController {
 		hardTwelveLabel.setText("");
 		passLineImage.setImage(null);
 		passLineLabel.setText("");
+		dontPassLineImage.setImage(null);
+		dontPassLineLabel.setText("");
 		onPuck4.setImage(null);
 		onPuck5.setImage(null);
 		onPuck6.setImage(null);
@@ -716,6 +804,7 @@ public class BoardController {
 		onPuck9.setImage(null);
 		onPuck10.setImage(null);
 		totalWagerPassLine.setChipValue(0);
+		totalWagerDontPassLine.setChipValue(0);
 		wagerLabel.setText("0");
 		
 	}
