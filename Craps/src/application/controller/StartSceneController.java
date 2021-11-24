@@ -1,5 +1,7 @@
 package application.controller;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -45,19 +47,39 @@ public class StartSceneController {
     		BoardController controller = loader.getController();
     		//String cash = new String();
     		//cash = balanceField.getText();
-    		if( balanceField.getText().isEmpty() || Integer.parseInt(balanceField.getText()) <= 0) {
+    		try {
+    			int balance = Integer.parseInt(balanceField.getText());
+    		}
+    		catch (NumberFormatException e){
+    			errorLabel.setText("Error: please enter a whole number greater than 0");
+    			balanceField.setText("0");
+    		}
+    		
+//    		if( )
+    		
+    		if( balanceField.getText().isEmpty() || Integer.parseInt(balanceField.getText()) <= 0 ) {
     			errorLabel.setText("Error: please enter a whole number greater than 0");
     			balanceField.clear();
     		}
     		else {
     			int startingCash = Integer.parseInt(balanceField.getText());
-        		controller.initialize(startingCash);
-        		Scene scene = new Scene(startPane);
-        		Stage stage= new Stage();
-        		stage.setScene(scene);
-        		stage.show();
-        		Stage startStage = (Stage) playButton.getScene().getWindow();
-        		startStage.close();
+            	controller.initialize(startingCash);
+            	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        		int width = gd.getDisplayMode().getWidth();
+        		int height = gd.getDisplayMode().getHeight();
+        		AnchorPane.setTopAnchor(startPane, 0d);
+        		AnchorPane.setRightAnchor(startPane, 0d);
+        		AnchorPane.setBottomAnchor(startPane, 0d);
+        		AnchorPane.setLeftAnchor(startPane, 0d);
+        		//startPane.getChildren().setAll(controller);
+            	Scene scene = new Scene(startPane/*, width-100, height-100*/);
+            	Stage stage= new Stage();
+            	//startPane.getChildren().add(new Group(startPane));
+            	//stage.setMaximized(true);
+            	stage.setScene(scene);
+            	stage.show();
+            	Stage startStage = (Stage) playButton.getScene().getWindow();
+            	startStage.close();
     		}
     	}
     }
