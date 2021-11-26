@@ -20,10 +20,6 @@
             <Font size="36.0" />
          </font></Label>
       <Button fx:id="rollButton" alignment="CENTER" layoutX="1156.0" layoutY="851.0" mnemonicParsing="false" onAction="#rollAnimation" prefHeight="150.0" prefWidth="193.0" text="Roll!" />
-      <Label fx:id="winLoseLabel" alignment="CENTER" layoutX="749.0" layoutY="917.0" prefHeight="21.0" prefWidth="246.0" text="You won/lost: $" textFill="#faff00">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
       <HBox alignment="CENTER" layoutX="220.0" layoutY="876.0" prefHeight="100.0" prefWidth="419.0">
          <children>
             <ImageView fx:id="chip1" fitHeight="70.0" fitWidth="70.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
@@ -245,7 +241,7 @@
             <HBox alignment="CENTER" layoutY="-2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
                <children>
                   <ImageView fx:id="fiveComePlaceImage" fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label textFill="#51ff00">
+                  <Label fx:id="fiveComePlaceLabel" textFill="#51ff00">
                      <font>
                         <Font size="22.0" />
                      </font></Label>
@@ -258,7 +254,7 @@
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
                <children>
                   <ImageView fx:id="sixComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label textFill="#51ff00">
+                  <Label fx:id="sixComePlaceLabel" textFill="#51ff00">
                      <font>
                         <Font size="22.0" />
                      </font></Label>
@@ -271,7 +267,7 @@
             <HBox alignment="CENTER" layoutY="2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
                <children>
                   <ImageView fx:id="eightComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label textFill="#51ff00">
+                  <Label fx:id="eightComePlaceLabel" textFill="#51ff00">
                      <font>
                         <Font size="22.0" />
                      </font></Label>
@@ -284,7 +280,7 @@
             <HBox alignment="CENTER" layoutY="-2.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
                <children>
                   <ImageView fx:id="nineComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label textFill="#51ff00">
+                  <Label fx:id="nineComePlaceLabel" textFill="#51ff00">
                      <font>
                         <Font size="22.0" />
                      </font></Label>
@@ -297,7 +293,7 @@
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
                <children>
                   <ImageView fx:id="tenComePlaceImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label textFill="#51ff00">
+                  <Label fx:id="tenComePlaceLabel" textFill="#51ff00">
                      <font>
                         <Font size="22.0" />
                      </font></Label>
@@ -307,7 +303,7 @@
       </Pane>
       <Pane fx:id="fourComePane" layoutX="359.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
          <children>
-            <HBox alignment="CENTER" layoutY="33.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+            <HBox alignment="CENTER_LEFT" layoutY="33.0" prefHeight="32.0" prefWidth="158.0" spacing="80.0">
                <children>
                   <ImageView fx:id="fourComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="fourComeLabel" textFill="#51ff00">
@@ -320,7 +316,7 @@
       </Pane>
       <Pane fx:id="fiveComePane" layoutX="513.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
          <children>
-            <HBox alignment="CENTER" layoutY="34.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+            <HBox alignment="CENTER_LEFT" layoutY="34.0" prefHeight="32.0" prefWidth="158.0" spacing="80.0">
                <children>
                   <ImageView fx:id="fiveComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="fiveComeLabel" textFill="#51ff00">
@@ -333,7 +329,7 @@
       </Pane>
       <Pane fx:id="sixComePane" layoutX="666.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
          <children>
-            <HBox alignment="CENTER" layoutY="32.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+            <HBox alignment="CENTER_LEFT" layoutY="32.0" prefHeight="32.0" prefWidth="158.0" spacing="90.0">
                <children>
                   <ImageView fx:id="sixComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="sixComeLabel" textFill="#51ff00">
@@ -346,7 +342,7 @@
       </Pane>
       <Pane fx:id="eightComePane" layoutX="824.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
          <children>
-            <HBox alignment="CENTER" layoutY="32.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+            <HBox alignment="CENTER_LEFT" layoutY="32.0" prefHeight="32.0" prefWidth="158.0" spacing="80.0">
                <children>
                   <ImageView fx:id="eightComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="eightComeLabel" textFill="#51ff00">
@@ -359,7 +355,7 @@
       </Pane>
       <Pane fx:id="nineComePane" layoutX="976.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
          <children>
-            <HBox alignment="CENTER" layoutY="40.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+            <HBox alignment="CENTER_LEFT" layoutY="56.0" prefHeight="32.0" prefWidth="158.0" spacing="80.0">
                <children>
                   <ImageView fx:id="nineComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="nineComeLabel" textFill="#51ff00">
@@ -372,7 +368,7 @@
       </Pane>
       <Pane fx:id="tenComePane" layoutX="1128.0" layoutY="90.0" prefHeight="112.0" prefWidth="158.0">
          <children>
-            <HBox alignment="CENTER" layoutY="40.0" prefHeight="32.0" prefWidth="158.0" spacing="45.0">
+            <HBox alignment="CENTER_LEFT" layoutY="40.0" prefHeight="32.0" prefWidth="158.0" spacing="100.0">
                <children>
                   <ImageView fx:id="tenComeImage" fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="tenComeLabel" textFill="#51ff00">
