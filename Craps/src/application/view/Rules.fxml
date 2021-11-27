@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="rulesPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="888.0" style="-fx-background-color: lime;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RulesController">
+<AnchorPane fx:id="rulesPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="888.0" style="-fx-background-color: Green; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RulesController">
    <children>
       <Hyperlink fx:id="wikiLink" layoutX="19.0" layoutY="145.0" onAction="#openLink" text="https://en.wikipedia.org/wiki/Craps">
          <font>
             <Font size="22.0" />
          </font>
       </Hyperlink>
-      <Hyperlink fx:id="longVideoLink" layoutX="19.0" layoutY="360.0" onAction="#openLink" text="https://www.youtube.com/watch?v=T6i5SkIn2VY&amp;t=2093s&amp;ab_channel=ColorUp">
+      <Hyperlink fx:id="longVideoLink" layoutX="19.0" layoutY="352.0" onAction="#openLink" text="https://www.youtube.com/watch?v=T6i5SkIn2VY&amp;t=2093s&amp;ab_channel=ColorUp">
          <font>
             <Font size="22.0" />
          </font>
       </Hyperlink>
-      <Label layoutX="19.0" layoutY="200.0" text="4 Minute Video on Craps How To Play:">
+      <Label layoutX="19.0" layoutY="201.0" text="4 Minute Video on Craps How To Play:" textFill="#070117">
          <font>
-            <Font size="34.0" />
+            <Font name="Arial Rounded MT Bold" size="34.0" />
          </font>
       </Label>
-      <Label layoutX="19.0" layoutY="292.0" text="In Depth Video On Craps Rules and Betting:">
+      <Label layoutX="26.0" layoutY="307.0" text="In Depth Video On Craps Rules and Betting:" textFill="#070117">
          <font>
-            <Font size="34.0" />
+            <Font name="Arial Rounded MT Bold" size="34.0" />
          </font>
       </Label>
-      <Label layoutX="19.0" layoutY="82.0" text="Wiki Article On The Game of Craps:">
+      <Label layoutX="19.0" layoutY="106.0" text="Wiki Article On The Game of Craps:" textFill="#070117">
          <font>
-            <Font size="34.0" />
+            <Font name="Arial Rounded MT Bold" size="34.0" />
          </font>
       </Label>
       <Hyperlink fx:id="quickVideoLink" layoutX="19.0" layoutY="250.0" onAction="#openLink" text="https://www.youtube.com/watch?v=qNsSpNm_iCw&amp;ab_channel=ColorUp">
@@ -39,15 +39,18 @@
             <Font size="22.0" />
          </font>
       </Hyperlink>
-      <Label layoutX="348.0" layoutY="24.0" text="Helpful Links">
+      <Label layoutX="344.0" layoutY="14.0" text="Helpful Links" underline="true">
          <font>
-            <Font size="34.0" />
+            <Font name="Arial Bold Italic" size="34.0" />
          </font>
       </Label>
-      <Button fx:id="backButton" layoutX="385.0" layoutY="418.0" mnemonicParsing="false" onAction="#goBack" prefHeight="90.0" prefWidth="131.0" style="-fx-background-color: gold; -fx-background-radius: 25;" text="Go Back" textFill="#009721">
+      <Button fx:id="backButton" layoutX="385.0" layoutY="418.0" mnemonicParsing="false" onAction="#goBack" prefHeight="90.0" prefWidth="131.0" style="-fx-background-color: cyan; -fx-background-radius: 25;" text="Go Back" textFill="#009721">
          <font>
             <Font name="Arial Black" size="21.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
    </children>
 </AnchorPane>

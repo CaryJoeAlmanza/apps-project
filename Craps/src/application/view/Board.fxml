@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -19,7 +21,16 @@
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Button fx:id="rollButton" alignment="CENTER" layoutX="1156.0" layoutY="851.0" mnemonicParsing="false" onAction="#rollAnimation" prefHeight="150.0" prefWidth="193.0" text="Roll!" />
+      <Button fx:id="rollButton" alignment="CENTER" layoutX="1156.0" layoutY="851.0" mnemonicParsing="false" onAction="#rollAnimation" prefHeight="150.0" prefWidth="193.0" style="-fx-background-color: Orange;" text="Roll!" underline="true">
+         <font>
+            <Font name="Broadway" size="48.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
       <HBox alignment="CENTER" layoutX="220.0" layoutY="876.0" prefHeight="100.0" prefWidth="419.0">
          <children>
             <ImageView fx:id="chip1" fitHeight="70.0" fitWidth="70.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
@@ -508,5 +519,16 @@
       </Label>
       <ImageView fx:id="die2Image" fitHeight="79.0" fitWidth="89.0" layoutX="1057.0" layoutY="878.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="die1Image" fitHeight="79.0" fitWidth="89.0" layoutX="966.0" layoutY="878.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="homeButton" layoutX="799.0" layoutY="937.0" mnemonicParsing="false" onAction="#goHome" style="-fx-background-color: red;" text="Go Home" underline="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <font>
+            <Font name="Britannic Bold" size="23.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
