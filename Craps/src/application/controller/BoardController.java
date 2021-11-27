@@ -2,11 +2,17 @@ package application.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import javafx.application.Platform;
 
 import application.model.*;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -16,11 +22,13 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
 public class BoardController {
 	int point;
-	//int comePoint;
 	ArrayList<Integer> comePointList = new ArrayList<Integer>();
 	ArrayList<Integer> dontComePointList = new ArrayList<Integer>();
 
@@ -396,12 +404,12 @@ public class BoardController {
     @FXML
     private ImageView die2Image;
     
-//    Chip dollar1 = new Chip("1", 1, chip1);
-//    Chip dollar5 = new Chip("5", 5, chip5);
-//    Chip dollar10 = new Chip("10", 10, chip10);
-//    Chip dollar25 = new Chip("25", 25, chip25);
-//    Chip dollar50 = new Chip("50", 50, chip50);
-//    Chip dollar100 = new Chip("100", 100, chip100);
+    @FXML
+    private Button homeButton;
+    
+    @FXML
+    private AnchorPane mainPane;
+    
     Chip totalWagerPassLine = new Chip("$", 0, chip$);
     Chip totalWagerDontPassLine = new Chip("$", 0, chip$);
     Chip totalWagerField = new Chip("$", 0, chip$);
@@ -441,17 +449,8 @@ public class BoardController {
     Puck on = new Puck(false, puck2);
     Player player = new Player(0, 0, 0);
     Game game = new Game();
-//    Die d1 = new Die();
-//    Die d2 = new Die();
-    /* need to add dont come number bets */
     
     public void initialize(int bankRoll) {
-//    	dollar1.setChipImg(chip1);
-//    	dollar5.setChipImg(chip5);
-//    	dollar10.setChipImg(chip10);
-//    	dollar25.setChipImg(chip25);
-//    	dollar50.setChipImg(chip50);
-//    	dollar100.setChipImg(chip100);
     	player.setStartingCash(bankRoll);
     	player.setCurrentCash(bankRoll);
     	balanceLabel.setText("" + String.valueOf(bankRoll));
@@ -551,21 +550,15 @@ public class BoardController {
     			switch(sumOfDice) {
     		    	case 7:
     		    	case 11:
-    		    			    //wins
     		    		player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
     		    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		    		//totalWagerPassLine.setChipValue(0);
-    		    			    //off.setActive(false);
     		    		clearBoard();
     		    		break;
     		    	case 2:
     		    	case 3:
     		    	case 12:
-    		    			    //loss
     		    		player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
     		    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		    		//totalWagerPassLine.setChipValue(0);
-    		    			    //off.setActive(false);
     		    		clearBoard();
     		    		break;
     		    	default:
@@ -592,23 +585,15 @@ public class BoardController {
     		        case 11:
     		        	player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
     		            balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		            //totalWagerDontPassLine.setChipValue(0);
-    		                    //off.setActive(false);
     		            clearBoard();
     		            break;
     		        case 2:
     		        case 3:
-    		                    //win
     		            player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue());
     		            balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		            //totalWagerDontPassLine.setChipValue(0);
-    		                    //off.setActive(false);
     		            clearBoard();
     		            break;
     		        case 12:
-    		                    //draw
-    		                    //off.setActive(false);
-    		        	//totalWagerDontPassLine.setChipValue(0);
     		            clearBoard();
     		            break;
     		            default:
@@ -633,30 +618,21 @@ public class BoardController {
     			switch(sumOfDice) {
     				case 7:
     		        case 11:
-    		                //wins from passline, lossses from Dontpassline
     		        	player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
     		            player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
     		            balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		            //totalWagerPassLine.setChipValue(0);
-    		            //totalWagerDontPassLine.setChipValue(0);
     		            clearBoard();
     		            break;
     		        case 2:
     		        case 3:  
-    		                //losses from passline, wins from Dontpassline
     		            player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
     		            player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue());
     		            balanceLabel.setText(String.valueOf(player.getCurrentCash())); 
-    		            //totalWagerPassLine.setChipValue(0);
-    		            //totalWagerDontPassLine.setChipValue(0);
     		            clearBoard();
     		            break;
     		        case 12:
-    		                //losses from passline
     		            player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
     		            balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		            //totalWagerPassLine.setChipValue(0);
-    		            //totalWagerDontPassLine.setChipValue(0);
     		            clearBoard();
     		            break;
     		        default: 
@@ -677,7 +653,6 @@ public class BoardController {
     		                onPuck10.setImage(on.getPuckImg().getImage());
     		    }
     		}
-    		    //clearBoard();
     	}
     	else{
     		checkWorkingBets(face1, face2);
@@ -687,12 +662,6 @@ public class BoardController {
 	    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 	    		off.setActive(true);
 	    		offPuck.setImage(off.getPuckImg().getImage());
-//	    		totalWagerFourCome.setChipValue(0);
-//    			totalWagerFiveCome.setChipValue(0);
-//    			totalWagerSixCome.setChipValue(0);
-//    			totalWagerEightCome.setChipValue(0);
-//    			totalWagerNineCome.setChipValue(0);
-//    			totalWagerTenCome.setChipValue(0);
 	    		clearBoard();
     		}
     		else if( sumOfDice == 7 ) {
@@ -701,27 +670,15 @@ public class BoardController {
 	    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     			off.setActive(true);
     			offPuck.setImage(off.getPuckImg().getImage());
-//    			totalWagerFourCome.setChipValue(0);
-//    			totalWagerFiveCome.setChipValue(0);
-//    			totalWagerSixCome.setChipValue(0);
-//    			totalWagerEightCome.setChipValue(0);
-//    			totalWagerNineCome.setChipValue(0);
-//    			totalWagerTenCome.setChipValue(0);
     			clearBoard();
     		}
     		checkComeBets(face1, face2);
     		if( totalWagerCome.getChipValue() > 0 && totalWagerDontCome.getChipValue() == 0) {
-    			
-    			//point2 = sumOfDice;
     			switch(sumOfDice) {
 		    		case 7:
 		    		case 11:
-		    			    //wins
 		    			player.setCurrentCash(player.getCurrentCash() + totalWagerCome.getChipValue());
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-		    		//totalWagerPassLine.setChipValue(0);
-		    			    //off.setActive(false);
-		    		//clearBoard();
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerCome.getChipValue()));
 		    			comeImage.setImage(null);
 		    			comeLabel.setText("");
@@ -730,21 +687,16 @@ public class BoardController {
 		    		case 2:
 		    		case 3:
 		    		case 12:
-		    			    //loss
 		    			player.setCurrentCash(player.getCurrentCash() - totalWagerCome.getChipValue());
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-		    		//totalWagerPassLine.setChipValue(0);
-		    			    //off.setActive(false);
-		    		//clearBoard();
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerCome.getChipValue()));
 		    			comeImage.setImage(null);
 		    			comeLabel.setText("");
 		    			totalWagerCome.setChipValue(0);
 		    			break;
 		    		default:
-		    			//comePoint = sumOfDice;
 		    			comePointList.add(sumOfDice);
-		    			if( sumOfDice == 4 /*comePoint == 4*/ ) {
+		    			if( sumOfDice == 4 ) {
 		    				fourComeImage.setImage(chip$.getImage());
 		    				fourComeLabel.setText("" + totalWagerCome.getChipValue());
 		    				totalWagerFourCome.setChipValue(Integer.parseInt(comeLabel.getText()));
@@ -780,17 +732,11 @@ public class BoardController {
     			}
     		}
     		else if( totalWagerCome.getChipValue() == 0 && totalWagerDontCome.getChipValue() > 0){
-    			
-    			//point2 = sumOfDice;
     			switch(sumOfDice) {
 		    		case 7:
 		    		case 11:
-		    			    //loses
 		    			player.setCurrentCash(player.getCurrentCash() - totalWagerDontCome.getChipValue());
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-		    		//totalWagerPassLine.setChipValue(0);
-		    			    //off.setActive(false);
-		    		//clearBoard();
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerDontCome.getChipValue()));
 		    			dontComeImage.setImage(null);
 		    			dontComeLabel.setText("");
@@ -798,12 +744,8 @@ public class BoardController {
 		    			break;
 		    		case 2:
 		    		case 3:
-		    			    //loss
 		    			player.setCurrentCash(player.getCurrentCash() + totalWagerDontCome.getChipValue());
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-		    		//totalWagerPassLine.setChipValue(0);
-		    			    //off.setActive(false);
-		    		//clearBoard();
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerDontCome.getChipValue()));
 		    			dontComeImage.setImage(null);
 		    			dontComeLabel.setText("");
@@ -815,9 +757,8 @@ public class BoardController {
 		    			dontComeLabel.setText("");
 		    			totalWagerDontCome.setChipValue(0);
 		    		default:
-		    			//comePoint = sumOfDice;
 		    			dontComePointList.add(sumOfDice);
-		    			if( sumOfDice == 4 /*comePoint == 4*/ ) {
+		    			if( sumOfDice == 4 ) {
 		    				fourComePlaceImage.setImage(chip$.getImage());
 		    				fourComePlaceLabel.setText("" + totalWagerDontCome.getChipValue());
 		    				totalWagerFourComePlace.setChipValue(Integer.parseInt(dontComeLabel.getText()));
@@ -853,18 +794,12 @@ public class BoardController {
     			}
     		}
     		else if( totalWagerCome.getChipValue() > 0 && totalWagerDontCome.getChipValue() > 0){
-    			
-    			//point2 = sumOfDice;
     			switch(sumOfDice) {
 		    		case 7:
 		    		case 11:
-		    			    //loses
 		    			player.setCurrentCash(player.getCurrentCash() + totalWagerCome.getChipValue());
 		    			player.setCurrentCash(player.getCurrentCash() - totalWagerDontCome.getChipValue());
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-		    		//totalWagerPassLine.setChipValue(0);
-		    			    //off.setActive(false);
-		    		//clearBoard();
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerCome.getChipValue()));
 		    			comeImage.setImage(null);
 		    			comeLabel.setText("");
@@ -876,13 +811,9 @@ public class BoardController {
 		    			break;
 		    		case 2:
 		    		case 3:
-		    			    //loss
 		    			player.setCurrentCash(player.getCurrentCash() - totalWagerCome.getChipValue());
 		    			player.setCurrentCash(player.getCurrentCash() + totalWagerDontCome.getChipValue());
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-		    		//totalWagerPassLine.setChipValue(0);
-		    			    //off.setActive(false);
-		    		//clearBoard();
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerCome.getChipValue()));
 		    			comeImage.setImage(null);
 		    			comeLabel.setText("");
@@ -903,10 +834,9 @@ public class BoardController {
 		    			dontComeLabel.setText("");
 		    			totalWagerDontCome.setChipValue(0);
 		    		default:
-		    			//comePoint = sumOfDice;
 		    			comePointList.add(sumOfDice);
 		    			dontComePointList.add(sumOfDice);
-		    			if( sumOfDice == 4 /*comePoint == 4*/ ) {
+		    			if( sumOfDice == 4 ) {
 		    				fourComeImage.setImage(chip$.getImage());
 		    				fourComeLabel.setText("" + totalWagerCome.getChipValue());
 		    				totalWagerFourCome.setChipValue(Integer.parseInt(comeLabel.getText()));
@@ -963,12 +893,17 @@ public class BoardController {
     			}
     		}
     	}
+    	try {
+			checkLose();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     public void checkComeBets(int face1, int face2){
     	int sumOfDice = face1 + face2;
     	
-    	if( comePointList.contains(sumOfDice) /*sumOfDice == comePoint*/ ) {
+    	if( comePointList.contains(sumOfDice) ) {
 			int i = comePointList.indexOf(sumOfDice);
 			if( sumOfDice == 4 ) {
 				player.setCurrentCash(player.getCurrentCash() + totalWagerFourCome.getChipValue());
@@ -1029,9 +964,6 @@ public class BoardController {
 			player.setCurrentCash(player.getCurrentCash() - totalWagerNineCome.getChipValue());
 			player.setCurrentCash(player.getCurrentCash() - totalWagerTenCome.getChipValue());
     		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-//			off.setActive(true);
-//			offPuck.setImage(off.getPuckImg().getImage());
-//			clearBoard();
     		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFourCome.getChipValue()));
 			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFiveCome.getChipValue()));
 			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerSixCome.getChipValue()));
@@ -1058,7 +990,7 @@ public class BoardController {
 			totalWagerTenCome.setChipValue(0);
 			comePointList.clear();
 		}
-    	if( dontComePointList.contains(sumOfDice) /*sumOfDice == comePoint*/ ) {
+    	if( dontComePointList.contains(sumOfDice) ) {
 			int i = dontComePointList.indexOf(sumOfDice);
 			if( sumOfDice == 4 ) {
 				player.setCurrentCash(player.getCurrentCash() - totalWagerFourComePlace.getChipValue());
@@ -1119,9 +1051,6 @@ public class BoardController {
 			player.setCurrentCash(player.getCurrentCash() + totalWagerNineComePlace.getChipValue());
 			player.setCurrentCash(player.getCurrentCash() + totalWagerTenComePlace.getChipValue());
     		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-//			off.setActive(true);
-//			offPuck.setImage(off.getPuckImg().getImage());
-//			clearBoard();
     		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFourComePlace.getChipValue()));
 			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFiveComePlace.getChipValue()));
 			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerSixComePlace.getChipValue()));
@@ -1158,12 +1087,6 @@ public class BoardController {
     	int place8Bet = totalWagerEightPlace.getChipValue();
     	int place9Bet = totalWagerNinePlace.getChipValue();
     	int place10Bet = totalWagerTenPlace.getChipValue();
-    		
-    		/* for place bets:
-    		 * 4 or 10: 9 to 5
-    		 * 5 or 9: 7 to 5
-    		 * 6 or 8: 7 to 6
-    		 * */
     	if( sumOfDice == 4 ) {
     		int place4BetPay = (int)(place4Bet * 9) / 5;
     		player.setCurrentCash(player.getCurrentCash() + place4BetPay);
@@ -1782,5 +1705,40 @@ public class BoardController {
     	}
     	
     }
-
-}
+    
+    public void checkLose() throws IOException{ 
+    	if(player.getCurrentCash()==0) {
+    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    		alert.setHeaderText("You Lose! You lost :$"+ (player.getStartingCash()-player.getEndingCash())); 
+    		alert.setTitle("Losing Screen"); 
+    		alert.setContentText("Click OK to exit.");
+    		alert.setOnHidden(evt -> Platform.exit());
+    		alert.show();
+    	}
+    }
+	 
+    @FXML
+    public void goHome(ActionEvent event) throws IOException {
+    	clearBoard();
+    	if(player.getCurrentCash() < player.getStartingCash()) {
+    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    		alert.setHeaderText("You lost :$"+ (player.getStartingCash()-player.getCurrentCash())); 
+    		alert.setTitle("Losing Screen"); 
+    		alert.setContentText("Click OK to go back to the Start.");
+    		alert.showAndWait();
+    	}
+    	if(player.getCurrentCash() > player.getStartingCash()) {
+    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    		alert.setHeaderText("You won :$"+ (player.getCurrentCash()-player.getStartingCash())); 
+    		alert.setTitle("Winning Screen"); 
+    		alert.setContentText("Click OK to go back to the Start.");
+    		alert.showAndWait();
+    	}
+    	URL url = new File("src/application/view/StartScreen.fxml").toURI().toURL();
+    	mainPane = FXMLLoader.load(url);
+    	Scene scene = new Scene(mainPane);
+    	Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    	window.setScene(scene);
+    	window.show();
+	 	}
+	}
