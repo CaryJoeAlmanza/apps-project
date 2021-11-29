@@ -17,7 +17,10 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class RulesController {
+public class RulesController { 
+	
+	//this is the rules controller for the rules scene
+	//This scene is filled with links that will take the player to websites to learn how to play the game
 
     @FXML
     private Hyperlink quickVideoLink;
@@ -39,7 +42,7 @@ public class RulesController {
     	Object source = event.getSource();
     	if(source == wikiLink) {
     		try {
-				Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Craps"));
+				Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Craps")); //directs the player to a website 
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (URISyntaxException e) {
@@ -68,7 +71,7 @@ public class RulesController {
     }
 
     @FXML
-    void goBack(ActionEvent event) throws IOException {
+    void goBack(ActionEvent event) throws IOException { //go back button to take them back to the home screen
     	Object source = event.getSource();
     	if(source == backButton) {
             URL url = new File("src/application/view/StartScreen.fxml").toURI().toURL();

@@ -1,6 +1,6 @@
 package application.controller;
 
-import java.io.File;
+import java.io.File;                              // this is the main panel for the application, everything will happen on this panel, from game play, to strategy, to the logic for the betting
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import javafx.fxml.FXMLLoader;
 
 public class BoardController {
 	int point;
-	ArrayList<Integer> comePointList = new ArrayList<Integer>();
+	ArrayList<Integer> comePointList = new ArrayList<Integer>();  
 	ArrayList<Integer> dontComePointList = new ArrayList<Integer>();
 
     @FXML
@@ -409,10 +409,10 @@ public class BoardController {
     
     @FXML
     private AnchorPane mainPane;
-    
-    Chip totalWagerPassLine = new Chip("$", 0, chip$);
+    //Calls the chip function
+    Chip totalWagerPassLine = new Chip("$", 0, chip$);        //These are the initializations for the chips so we can utilize them in game and give them their functions
     Chip totalWagerDontPassLine = new Chip("$", 0, chip$);
-    Chip totalWagerField = new Chip("$", 0, chip$);
+    Chip totalWagerField = new Chip("$", 0, chip$);				//
     Chip totalWagerCome = new Chip("$", 0, chip$);
     Chip totalWagerDontCome = new Chip("$", 0, chip$);
     Chip totalWagerFourPlace = new Chip("$", 0, chip$);
@@ -445,15 +445,15 @@ public class BoardController {
     Chip totalWagerHardEleven = new Chip("$", 0, chip$);
     Chip totalBets = new Chip("$", 0, chip$);
     Chip sourceChip = new Chip();
-    Puck off = new Puck(true, puck1);
+    Puck off = new Puck(true, puck1);  //the pucks determine which way the game would be played
     Puck on = new Puck(false, puck2);
-    Player player = new Player(0, 0, 0);
-    Game game = new Game();
+    Player player = new Player(0, 0, 0);  //gives the starting data for the player
+    Game game = new Game(); //calls the game function
     
-    public void initialize(int bankRoll) {
-    	player.setStartingCash(bankRoll);
-    	player.setCurrentCash(bankRoll);
-    	balanceLabel.setText("" + String.valueOf(bankRoll));
+    public void initialize(int bankRoll) {  //handles the amount of money within the game
+    	player.setStartingCash(bankRoll); //how much the player said they are willing to bet
+    	player.setCurrentCash(bankRoll);	//their current amount
+    	balanceLabel.setText("" + String.valueOf(bankRoll));  //gives the chips the amount of money they are supposed to represent
     	wagerLabel.setText("0");
     	totalWagerPassLine.setChipImg(chip$);
     	totalWagerDontPassLine.setChipImg(chip$);
@@ -489,8 +489,8 @@ public class BoardController {
         totalWagerHardThree.setChipImg(chip$);
         totalWagerHardEleven.setChipImg(chip$);
         totalBets.setChipImg(chip$);
-        off.setPuckImg(puck1);
-        on.setPuckImg(puck2);
+        off.setPuckImg(puck1); //the off puck means there will be no points and a new game will start
+        on.setPuckImg(puck2); //
         offPuck.setImage(off.getPuckImg().getImage());
         clock = new Roller();
         setDiceImages(game.getD1().getTop(), game.getD2().getTop());
@@ -498,8 +498,8 @@ public class BoardController {
     
     private Roller clock;
     
-    private class Roller extends AnimationTimer{
-
+    private class Roller extends AnimationTimer{  //animates the rolling of the dice when hit roll
+ 
     	private long FRAMES_PER_SEC = 50L;
     	private long INTERVAL = 1000000000L / FRAMES_PER_SEC;
     	private int MAX_ROLLS = 20;
@@ -525,18 +525,18 @@ public class BoardController {
 		}
     }
     
-    public void setDiceImages(int top1, int top2) {
+    public void setDiceImages(int top1, int top2) {    //sets the images of the dice
     	File f  = new File("images/dice" + top1 + ".png");
     	File f2 = new File("images/dice" + top2 + ".png");
     	die1Image.setImage(new Image(f.toURI().toString()));
     	die2Image.setImage(new Image(f2.toURI().toString()));
     }
     
-    public void updateViews() {
+    public void updateViews() {  //shows what the roll was
     	setDiceImages(game.getD1().getTop(), game.getD2().getTop());
     }
     
-    public void roll() {
+    public void roll() {  //the roll function for the dice, this is how the dice will be working in the gane and their functions
     	game.roll();
     	updateViews();
     	int face1 = game.getD1().getTop();
@@ -544,26 +544,26 @@ public class BoardController {
     	int sumOfDice = face1 + face2;
     	checkOneTimeBets(face1, face2);
     	clearOneTimeBets();
-    	if(off.isActive()){
+    	if(off.isActive()){  //for when the puck is off the board
     		checkWorkingBets(face1, face2);
-    		if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() == 0) {
-    			switch(sumOfDice) {
-    		    	case 7:
+    		if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() == 0) { //if there is a wager on the pass line but the Dont pass line is left empty
+    			switch(sumOfDice) {																			
+    		    	case 7:																					
     		    	case 11:
-    		    		player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
-    		    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    		    		clearBoard();
+    		    		player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue()); //if the player rolls a 7 or 11 they win the game
+    		    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));   //calculates the amount the player won and then shows the current amount
+    		    		clearBoard(); //calls the clearBoard function to reset the board
     		    		break;
     		    	case 2:
     		    	case 3:
     		    	case 12:
-    		    		player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
-    		    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    		    		player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue()); //if they roll a 2,3,or 12 then they lose 
+    		    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));    //calculates the amount the player has lost and then shows the current amount
     		    		clearBoard();
     		    		break;
     		    	default:
     		    		point = sumOfDice;
-    		    		off.setActive(false);
+    		    		off.setActive(false);     //this determines the total of both dice and assigns them to a point for the on puck
     		    		offPuck.setImage(null);
     		    		if( point == 4 )
     		    			onPuck4.setImage(on.getPuckImg().getImage());
@@ -579,21 +579,21 @@ public class BoardController {
     		    			onPuck10.setImage(on.getPuckImg().getImage());
     		    }
     	    }
-    		else if(totalWagerPassLine.getChipValue() == 0 && totalWagerDontPassLine.getChipValue() > 0) {
+    		else if(totalWagerPassLine.getChipValue() == 0 && totalWagerDontPassLine.getChipValue() > 0) {  //if the Pass Line is empty but the Dont Pass Line has chips in it
     			switch(sumOfDice) {
     				case 7:
     		        case 11:
-    		        	player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
+    		        	player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue()); //7 and 11 would then be losing
     		            balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     		            clearBoard();
     		            break;
     		        case 2:
     		        case 3:
-    		            player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue());
+    		            player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue()); //2 and 3 would be winning
     		            balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     		            clearBoard();
     		            break;
-    		        case 12:
+    		        case 12:    			//12 would end the game
     		            clearBoard();
     		            break;
     		            default:
@@ -614,11 +614,11 @@ public class BoardController {
     		                    onPuck10.setImage(on.getPuckImg().getImage());
     		    }
     		}
-    		else if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() > 0) {
+    		else if(totalWagerPassLine.getChipValue() > 0 && totalWagerDontPassLine.getChipValue() > 0) { //if both the Pass Line and the Don't Pass Line
     			switch(sumOfDice) {
     				case 7:
     		        case 11:
-    		        	player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
+    		        	player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());    //this combines the logic for he past two if statements 
     		            player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
     		            balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     		            clearBoard();
@@ -655,7 +655,7 @@ public class BoardController {
     		}
     	}
     	else{
-    		checkWorkingBets(face1, face2);
+    		checkWorkingBets(face1, face2);			//checks the roll of the dice
     		if( sumOfDice == point ) {
     			player.setCurrentCash(player.getCurrentCash() + totalWagerPassLine.getChipValue());
     			player.setCurrentCash(player.getCurrentCash() - totalWagerDontPassLine.getChipValue());
@@ -668,17 +668,17 @@ public class BoardController {
     			player.setCurrentCash(player.getCurrentCash() - totalWagerPassLine.getChipValue());
     			player.setCurrentCash(player.getCurrentCash() + totalWagerDontPassLine.getChipValue());
 	    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    			off.setActive(true);
+    			off.setActive(true); //puts the off puck on the field to show that a new game is about to start
     			offPuck.setImage(off.getPuckImg().getImage());
     			clearBoard();
     		}
     		checkComeBets(face1, face2);
-    		if( totalWagerCome.getChipValue() > 0 && totalWagerDontCome.getChipValue() == 0) {
+    		if( totalWagerCome.getChipValue() > 0 && totalWagerDontCome.getChipValue() == 0) { //If there are chips in the Come Wager area but the Don't Wager is empty
     			switch(sumOfDice) {
 		    		case 7:
 		    		case 11:
-		    			player.setCurrentCash(player.getCurrentCash() + totalWagerCome.getChipValue());
-		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+		    			player.setCurrentCash(player.getCurrentCash() + totalWagerCome.getChipValue());  //player wins and the amount won is added to his balance
+		    			balanceLabel.setText(String.valueOf(player.getCurrentCash())); //shows the current balance
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerCome.getChipValue()));
 		    			comeImage.setImage(null);
 		    			comeLabel.setText("");
@@ -730,12 +730,12 @@ public class BoardController {
 		    			comeLabel.setText("");
 		    			totalWagerCome.setChipValue(0);
     			}
-    		}
-    		else if( totalWagerCome.getChipValue() == 0 && totalWagerDontCome.getChipValue() > 0){
+    		} 
+    		else if( totalWagerCome.getChipValue() == 0 && totalWagerDontCome.getChipValue() > 0){ //if there is nothing in the Come Bet area but there is something in the Don't Come Bet area
     			switch(sumOfDice) {
 		    		case 7:
 		    		case 11:
-		    			player.setCurrentCash(player.getCurrentCash() - totalWagerDontCome.getChipValue());
+		    			player.setCurrentCash(player.getCurrentCash() - totalWagerDontCome.getChipValue()); //player loses amount wagered
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerDontCome.getChipValue()));
 		    			dontComeImage.setImage(null);
@@ -744,7 +744,7 @@ public class BoardController {
 		    			break;
 		    		case 2:
 		    		case 3:
-		    			player.setCurrentCash(player.getCurrentCash() + totalWagerDontCome.getChipValue());
+		    			player.setCurrentCash(player.getCurrentCash() + totalWagerDontCome.getChipValue()); //player wins amount
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerDontCome.getChipValue()));
 		    			dontComeImage.setImage(null);
@@ -793,11 +793,11 @@ public class BoardController {
 		    			totalWagerDontCome.setChipValue(0);
     			}
     		}
-    		else if( totalWagerCome.getChipValue() > 0 && totalWagerDontCome.getChipValue() > 0){
+    		else if( totalWagerCome.getChipValue() > 0 && totalWagerDontCome.getChipValue() > 0){ // if both areas are filled
     			switch(sumOfDice) {
 		    		case 7:
 		    		case 11:
-		    			player.setCurrentCash(player.getCurrentCash() + totalWagerCome.getChipValue());
+		    			player.setCurrentCash(player.getCurrentCash() + totalWagerCome.getChipValue());    //both statements are combined 
 		    			player.setCurrentCash(player.getCurrentCash() - totalWagerDontCome.getChipValue());
 		    			balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 		    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerCome.getChipValue()));
@@ -900,20 +900,20 @@ public class BoardController {
 		}
     }
     
-    public void checkComeBets(int face1, int face2){
+    public void checkComeBets(int face1, int face2){   //function that calculates the bets that are happening in the Come Bet area
     	int sumOfDice = face1 + face2;
     	
-    	if( comePointList.contains(sumOfDice) ) {
+    	if( comePointList.contains(sumOfDice) ) { //if the total number of points for the Come Bet area equal the sum of both dice
 			int i = comePointList.indexOf(sumOfDice);
-			if( sumOfDice == 4 ) {
-				player.setCurrentCash(player.getCurrentCash() + totalWagerFourCome.getChipValue());
-				balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+			if( sumOfDice == 4 ) { //if both dice equal 4
+				player.setCurrentCash(player.getCurrentCash() + totalWagerFourCome.getChipValue()); //calls the getChipValue function to calculate the value of the chips on the board currently
+				balanceLabel.setText(String.valueOf(player.getCurrentCash()));			// adds or subtracts the amount from the current cash
 				wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFourCome.getChipValue()));
 				fourComeImage.setImage(null);
     			fourComeLabel.setText("");
-    			totalWagerFourCome.setChipValue(0);
+    			totalWagerFourCome.setChipValue(0); //sets the chips value to 0
 			}
-			if( sumOfDice == 5 ) {
+			if( sumOfDice == 5 ) { //if both dice equal 5
 				player.setCurrentCash(player.getCurrentCash() + totalWagerFiveCome.getChipValue());
 				balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 				wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFiveCome.getChipValue()));
@@ -921,7 +921,7 @@ public class BoardController {
     			fiveComeLabel.setText("");
     			totalWagerFiveCome.setChipValue(0);
 			}
-			if( sumOfDice == 6 ) {
+			if( sumOfDice == 6 ) { //if both dice equal 6
 				player.setCurrentCash(player.getCurrentCash() + totalWagerSixCome.getChipValue());
 				balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 				wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerSixCome.getChipValue()));
@@ -929,7 +929,7 @@ public class BoardController {
     			sixComeLabel.setText("");
     			totalWagerSixCome.setChipValue(0);
 			}
-			if( sumOfDice == 8 ) {
+			if( sumOfDice == 8 ) {//if both dice equal 7
 				player.setCurrentCash(player.getCurrentCash() + totalWagerEightCome.getChipValue());
 				balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 				wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerEightCome.getChipValue()));
@@ -937,7 +937,7 @@ public class BoardController {
     			eightComeLabel.setText("");
     			totalWagerEightCome.setChipValue(0);
 			}
-			if( sumOfDice == 9 ) {
+			if( sumOfDice == 9 ) { //if both dice equal 9
 				player.setCurrentCash(player.getCurrentCash() + totalWagerNineCome.getChipValue());
 				balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 				wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerNineCome.getChipValue()));
@@ -945,7 +945,7 @@ public class BoardController {
     			nineComeLabel.setText("");
     			totalWagerNineCome.setChipValue(0);
 			}
-			if( sumOfDice == 10 ) {
+			if( sumOfDice == 10 ) { //if both dice equal 10
 				player.setCurrentCash(player.getCurrentCash() + totalWagerTenCome.getChipValue());
 				balanceLabel.setText(String.valueOf(player.getCurrentCash()));
 				wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerTenCome.getChipValue()));
@@ -953,10 +953,10 @@ public class BoardController {
     			tenComeLabel.setText("");
     			totalWagerTenCome.setChipValue(0);
 			}
-			comePointList.remove(i);
+			comePointList.remove(i);	//removes what is stored in the dice
 
 		}
-		else if( sumOfDice == 7 ) {
+		else if( sumOfDice == 7 ) { //if both dice equal 7
 			player.setCurrentCash(player.getCurrentCash() - totalWagerFourCome.getChipValue());
 			player.setCurrentCash(player.getCurrentCash() - totalWagerFiveCome.getChipValue());
 			player.setCurrentCash(player.getCurrentCash() - totalWagerSixCome.getChipValue());
@@ -972,7 +972,7 @@ public class BoardController {
 			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerTenCome.getChipValue()));
     		fourComeImage.setImage(null);
 			fourComeLabel.setText("");
-			totalWagerFourCome.setChipValue(0);
+			totalWagerFourCome.setChipValue(0); //sets the value of the chips to 0
 			fiveComeImage.setImage(null);
 			fiveComeLabel.setText("");
 			totalWagerFiveCome.setChipValue(0);
@@ -990,7 +990,7 @@ public class BoardController {
 			totalWagerTenCome.setChipValue(0);
 			comePointList.clear();
 		}
-    	if( dontComePointList.contains(sumOfDice) ) {
+    	if( dontComePointList.contains(sumOfDice) ) { // if the points for the puck are the same as the sum of the two dice 
 			int i = dontComePointList.indexOf(sumOfDice);
 			if( sumOfDice == 4 ) {
 				player.setCurrentCash(player.getCurrentCash() - totalWagerFourComePlace.getChipValue());
@@ -998,7 +998,7 @@ public class BoardController {
 				wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFourComePlace.getChipValue()));
 				fourComePlaceImage.setImage(null);
     			fourComePlaceLabel.setText("");
-    			totalWagerFourComePlace.setChipValue(0);
+    			totalWagerFourComePlace.setChipValue(0); //sets the chip value to 0
 			}
 			if( sumOfDice == 5 ) {
 				player.setCurrentCash(player.getCurrentCash() - totalWagerFiveComePlace.getChipValue());
@@ -1079,7 +1079,7 @@ public class BoardController {
 		}
     }
     
-    public void checkWorkingBets(int face1, int face2) {
+    public void checkWorkingBets(int face1, int face2) {  //calculates the betting logic for the Working Bets
     	int sumOfDice = face1 + face2;
     	int place4Bet = totalWagerFourPlace.getChipValue();
     	int place5Bet = totalWagerFivePlace.getChipValue();
@@ -1088,10 +1088,10 @@ public class BoardController {
     	int place9Bet = totalWagerNinePlace.getChipValue();
     	int place10Bet = totalWagerTenPlace.getChipValue();
     	if( sumOfDice == 4 ) {
-    		int place4BetPay = (int)(place4Bet * 9) / 5;
+    		int place4BetPay = (int)(place4Bet * 9) / 5; //when the sum of the dice equal 0 the place4Bet is chosen
     		player.setCurrentCash(player.getCurrentCash() + place4BetPay);
-    		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFourPlace.getChipValue()));
-    		totalWagerFourPlace.setChipValue(0);
+    		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerFourPlace.getChipValue())); //clears off all the wagers in that wager spot
+    		totalWagerFourPlace.setChipValue(0); //sets it equal to 0
     		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     		fourPlaceImage.setImage(null);
     		fourPlaceLabel.setText("");
@@ -1143,7 +1143,7 @@ public class BoardController {
     	}
     }
     
-    public void checkOneTimeBets(int face1, int face2){
+    public void checkOneTimeBets(int face1, int face2){ //function to calculate the One Time Bets
     	int sumOfDice = face1 + face2;
     	int hard2Bet = totalWagerHardTwo.getChipValue();
     	int hard3Bet = totalWagerHardThree.getChipValue();
@@ -1157,43 +1157,43 @@ public class BoardController {
     	int any7Bet = totalWagerSeven.getChipValue();
     	int anyCrapsBet = totalWagerAnyCraps.getChipValue();
     	
-    	if( sumOfDice == 2 || sumOfDice == 3 || sumOfDice == 4 || sumOfDice == 9 || sumOfDice == 10 || sumOfDice == 11 || sumOfDice == 12) {
-    		if( sumOfDice == 2) {
-    			int fieldBetPay = fieldBet * 2;
-    			player.setCurrentCash(player.getCurrentCash() + fieldBetPay);
-    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerField.getChipValue()));
-        		totalWagerField.setChipValue(0);
+    	if( sumOfDice == 2 || sumOfDice == 3 || sumOfDice == 4 || sumOfDice == 9 || sumOfDice == 10 || sumOfDice == 11 || sumOfDice == 12) { //if the sum of the two dice equals 2,3,4,9,10,11,12
+    		if( sumOfDice == 2) { 
+    			int fieldBetPay = fieldBet * 2; //the field bet is then multiplied by 2
+    			player.setCurrentCash(player.getCurrentCash() + fieldBetPay); //that is then added to the players current amount
+    			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerField.getChipValue())); //wager is then cleared 
+        		totalWagerField.setChipValue(0); //wager set to 0
         		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     		}
     		else if( sumOfDice == 12) {
-    			int fieldBetPay = fieldBet * 3;
+    			int fieldBetPay = fieldBet * 3;  //if the sum is 12 then it is multiplied by 3
     			player.setCurrentCash(player.getCurrentCash() + fieldBetPay);
     			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerField.getChipValue()));
         		totalWagerField.setChipValue(0);
         		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     		}
     		else {
-    			int fieldBetPay = fieldBet;
-    			player.setCurrentCash(player.getCurrentCash() + fieldBetPay);
+    			int fieldBetPay = fieldBet; 
+    			player.setCurrentCash(player.getCurrentCash() + fieldBetPay); 
     			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerField.getChipValue()));
         		totalWagerField.setChipValue(0);
         		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     		}
     	}
     	else {
-    		int fieldBetPay = fieldBet;
-			player.setCurrentCash(player.getCurrentCash() - fieldBetPay);
+    		int fieldBetPay = fieldBet; 	//if any other number is rolled besides these then they lose what was wagered
+			player.setCurrentCash(player.getCurrentCash() - fieldBetPay); 
 			wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerField.getChipValue()));
     		totalWagerField.setChipValue(0);
     		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     	}
     	
-    	if( sumOfDice == 7 ) {
-    		int any7BetPay = any7Bet * 4;
-    		player.setCurrentCash(player.getCurrentCash() + any7BetPay);
-    		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerSeven.getChipValue()));
-    		totalWagerSeven.setChipValue(0);
-    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    	if( sumOfDice == 7 ) { //if the roll sum is 7
+    		int any7BetPay = any7Bet * 4;  //multiply any bet that is set for 7 by 4
+    		player.setCurrentCash(player.getCurrentCash() + any7BetPay); //add it to the current amount
+    		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerSeven.getChipValue())); //clear the wager
+    		totalWagerSeven.setChipValue(0); //set it to zero
+    		balanceLabel.setText(String.valueOf(player.getCurrentCash())); //show the current balance
     	}
     	else {
     		player.setCurrentCash(player.getCurrentCash() - any7Bet);
@@ -1201,34 +1201,39 @@ public class BoardController {
     		totalWagerSeven.setChipValue(0);
     		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     	}
-    	if( sumOfDice == 2 || sumOfDice == 3 || sumOfDice == 12 ) {
-    		int anyCrapsBetPay = anyCrapsBet * 7;
-    		player.setCurrentCash(player.getCurrentCash() + anyCrapsBetPay);
+    	if( sumOfDice == 2 || sumOfDice == 3 || sumOfDice == 12 ) { //if the sum is 2,3, or 12
+    		int anyCrapsBetPay = anyCrapsBet * 7; //multiply them by 7
+    		player.setCurrentCash(player.getCurrentCash() + anyCrapsBetPay); //add it to the current amount
+    		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerAnyCraps.getChipValue())); //clear wager
+    		totalWagerAnyCraps.setChipValue(0); //set it to 0
+    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
+    	}
+    	else {
+    		player.setCurrentCash(player.getCurrentCash() - anyCrapsBet); //lost the amount wagered
     		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerAnyCraps.getChipValue()));
     		totalWagerAnyCraps.setChipValue(0);
     		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     	}
-    	else {
-    		player.setCurrentCash(player.getCurrentCash() - anyCrapsBet);
-    		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerAnyCraps.getChipValue()));
-    		totalWagerAnyCraps.setChipValue(0);
+    	
+    	//these statements are for when the dices are the same number or they are numbers that are next to each other and equal the betting number
+    	//if they win the bet would be multiplied by 30,7,15, 9, or 4 and then added to their current amount
+    	//if they lose then the bet would be subtracted from their current amount
+    	
+    	if( face1 == 1 && face2 == 1 ) { // if both the dice are 1
+    		int hard2BetPay = hard2Bet * 30; //Multiply it by 30 
+    		player.setCurrentCash(player.getCurrentCash() + hard2BetPay);//add it to the current amount 
+    		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerHardTwo.getChipValue())); //clear wagers
+    		totalWagerHardTwo.setChipValue(0); //set them to 0
     		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     	}
-    	if( face1 == 1 && face2 == 1 ) {
-    		int hard2BetPay = hard2Bet * 30;
-    		player.setCurrentCash(player.getCurrentCash() + hard2BetPay);
-    		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerHardTwo.getChipValue()));
-    		totalWagerHardTwo.setChipValue(0);
-    		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
-    	}
     	else {
-    		player.setCurrentCash(player.getCurrentCash() - hard2Bet);
+    		player.setCurrentCash(player.getCurrentCash() - hard2Bet); //lose the bet
     		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerHardTwo.getChipValue()));
     		totalWagerHardTwo.setChipValue(0);
     		balanceLabel.setText(String.valueOf(player.getCurrentCash()));
     	}
     	if( face1 == 6 && face2 == 6 ) {
-    		int hard12BetPay = hard12Bet * 30;
+    		int hard12BetPay = hard12Bet * 30; //
     		player.setCurrentCash(player.getCurrentCash() + hard12BetPay);
     		wagerLabel.setText(String.valueOf(Integer.parseInt(wagerLabel.getText()) - totalWagerHardTwelve.getChipValue()));
     		totalWagerHardTwelve.setChipValue(0);
@@ -1320,7 +1325,7 @@ public class BoardController {
     	}
     }
 
-	public void clearBoard() {
+	public void clearBoard() { //this function clears the board and restarts the whole game
 		passLineImage.setImage(null);
 		passLineLabel.setText("");
 		dontPassLineImage.setImage(null);
@@ -1333,7 +1338,7 @@ public class BoardController {
 		onPuck10.setImage(null);
 		totalWagerPassLine.setChipValue(0);
 		totalWagerDontPassLine.setChipValue(0);
-		totalWagerFourPlace.setChipValue(0);
+		totalWagerFourPlace.setChipValue(0);   				//everything goes back to 0
 		totalWagerFivePlace.setChipValue(0);
 		totalWagerSixPlace.setChipValue(0);
 		totalWagerEightPlace.setChipValue(0);
@@ -1360,7 +1365,7 @@ public class BoardController {
 		
 	}
 	
-	public void clearOneTimeBets() {
+	public void clearOneTimeBets() {  //clears the One Time Bets
 		hardTwoImage.setImage(null);
 		hardTwoLabel.setText("");
 		hardThreeImage.setImage(null);
@@ -1385,7 +1390,7 @@ public class BoardController {
 		anyCrapsLabel.setText("");
 	}
     
-    public void rollAnimation() throws InterruptedException {
+    public void rollAnimation() throws InterruptedException {  //makes sure that there is a bet in the Pass Line before the dice can be rolled
     	if(passLineLabel.getText().equals("") && dontPassLineLabel.getText().equals("")) {
     		invalidBetLabel.setText("You need to place a line bet for the first roll!");
     	}
@@ -1396,7 +1401,7 @@ public class BoardController {
     }
     
     @FXML
-    void handleDragDetected(MouseEvent event) throws IOException {
+    void handleDragDetected(MouseEvent event) throws IOException {  //The drag function which gives the chips their values and also their identifier
     	Object source = event.getSource();
     	if( source == chip1 ) {
     		sourceChip.setChipID("1");
@@ -1455,14 +1460,14 @@ public class BoardController {
     }
 
     @FXML
-    void handleDragOver(DragEvent event) {
+    void handleDragOver(DragEvent event) { //allows the drag movement
     	if(event.getDragboard().hasImage()) {
     		event.acceptTransferModes(TransferMode.ANY);
     	}
     }
 
     @FXML
-    void handleDrop(DragEvent event) {
+    void handleDrop(DragEvent event) {  //drops the chip onto a certain spot on the board and then records it as a value and returned as an amount being wagered
     	Image img = event.getDragboard().getImage();
     	Object source = event.getSource();
     	if( sourceChip.getChipValue() + Integer.parseInt(wagerLabel.getText()) > Integer.parseInt(balanceLabel.getText())) {
@@ -1706,7 +1711,7 @@ public class BoardController {
     	
     }
     
-    public void checkLose() throws IOException{ 
+    public void checkLose() throws IOException{ //an alert box that will pop up once the player runs out of money
     	if(player.getCurrentCash()==0) {
     		Alert alert = new Alert(Alert.AlertType.INFORMATION);
     		alert.setHeaderText("You Lose! You lost :$"+ (player.getStartingCash()-player.getEndingCash())); 
@@ -1718,18 +1723,18 @@ public class BoardController {
     }
 	 
     @FXML
-    public void goHome(ActionEvent event) throws IOException {
+    public void goHome(ActionEvent event) throws IOException { //a button that will allow the player to start over completely and go back to the home screen
     	clearBoard();
     	if(player.getCurrentCash() < player.getStartingCash()) {
     		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    		alert.setHeaderText("You lost :$"+ (player.getStartingCash()-player.getCurrentCash())); 
+    		alert.setHeaderText("You lost :$"+ (player.getStartingCash()-player.getCurrentCash())); //Tells the player how much money they lost
     		alert.setTitle("Losing Screen"); 
-    		alert.setContentText("Click OK to go back to the Start.");
+    		alert.setContentText("Click OK to go back to the Start."); //allows them to go back home
     		alert.showAndWait();
     	}
     	if(player.getCurrentCash() > player.getStartingCash()) {
     		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    		alert.setHeaderText("You won :$"+ (player.getCurrentCash()-player.getStartingCash())); 
+    		alert.setHeaderText("You won :$"+ (player.getCurrentCash()-player.getStartingCash())); //tells the player how much they won in the game
     		alert.setTitle("Winning Screen"); 
     		alert.setContentText("Click OK to go back to the Start.");
     		alert.showAndWait();
@@ -1737,7 +1742,7 @@ public class BoardController {
     	URL url = new File("src/application/view/StartScreen.fxml").toURI().toURL();
     	mainPane = FXMLLoader.load(url);
     	Scene scene = new Scene(mainPane);
-    	Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    	Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
     	window.setScene(scene);
     	window.show();
 	 	}
